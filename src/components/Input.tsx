@@ -23,6 +23,11 @@ interface FieldPasswordProps extends TextInputProps {
   variants?: Variants
   showPassword: boolean
   setShowPassword: React.Dispatch<React.SetStateAction<boolean>>
+  innerRef?: React.LegacyRef<TextInput>
+}
+
+interface FieldProps extends TextInputProps {
+  innerRef?: React.LegacyRef<TextInput>
 }
 
 export type LabelProps = {
@@ -33,10 +38,11 @@ function Input({ children }: InputProps) {
   return <View className="flex flex-col gap-4">{children}</View>
 }
 
-function Field({ ...rest }: TextInputProps) {
+function Field({ innerRef, ...rest }: FieldProps) {
   return (
     <TextInput
-      className="border-0 bg-zinc-100 h-12 rounded-md px-4 text-sm"
+      ref={innerRef}
+      className="border-0 bg-zinc-100 h-14 rounded-md px-4 text-sm"
       placeholderTextColor={colors.zinc[400]}
       {...rest}
     />
@@ -46,12 +52,14 @@ function Field({ ...rest }: TextInputProps) {
 function FieldPassword({
   showPassword,
   setShowPassword,
+  innerRef,
   ...rest
 }: FieldPasswordProps) {
   return (
-    <View className="bg-zinc-100 h-12 rounded-md flex flex-row justify-between items-center">
+    <View className="bg-zinc-100 h-14 px-4 rounded-md flex flex-row justify-between items-center">
       <TextInput
-        className="border-0 bg-zinc-100 h-12 rounded-md px-4 text-sm"
+        ref={innerRef}
+        className="border-0 bg-zinc-100 h-full rounded-md text-sm"
         placeholderTextColor={colors.zinc[400]}
         secureTextEntry={showPassword}
         {...rest}
