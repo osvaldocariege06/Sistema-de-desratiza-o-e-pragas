@@ -10,13 +10,13 @@ function Switch({ saveDevice, ...props }: SwitchProps) {
   return (
     <NativeSwitch
       style={{
-        transform: [{ scaleX: 1 }, { scaleY: 0.8 }],
+        transform: [{ scaleX: 1 }, { scaleY: 0.9 }],
       }}
       trackColor={{
-        true: colors.green[600],
+        true: colors.zinc[200],
         false: colors.zinc[400],
       }}
-      thumbColor={saveDevice ? colors.lime[300] : colors.zinc[200]}
+      thumbColor={saveDevice ? colors.green[600] : colors.zinc[200]}
       {...props}
     />
   )

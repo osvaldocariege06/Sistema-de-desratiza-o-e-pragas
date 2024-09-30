@@ -25,7 +25,7 @@ export default function Layout() {
   return (
     <>
       <StatusBar
-        barStyle={'light-content'}
+        barStyle={'dark-content'}
         backgroundColor={'transparent'}
         translucent
       />
