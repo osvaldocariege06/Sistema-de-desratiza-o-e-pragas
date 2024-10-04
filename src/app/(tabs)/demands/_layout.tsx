@@ -1,0 +1,33 @@
+import { colors } from '@/styles/colors'
+import { Stack } from 'expo-router'
+
+export default function Layout() {
+  return (
+    <Stack
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: colors.green[600],
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }}
+    >
+      {/* Optionally configure static options outside the route.*/}
+      <Stack.Screen
+        name="index"
+        options={{
+          title: 'Minhas Demandas',
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="filter-demands/index"
+        options={{
+          title: '',
+        }}
+      />
+    </Stack>
+  )
+}

@@ -145,7 +145,10 @@ export default function SignIn() {
               />
               <Text className="text-xs">Lembrar este dispositivo</Text>
             </View>
-            <Link href={'/'} className="text-xs text-green-600">
+            <Link
+              href={'/auth/forgot-password'}
+              className="text-xs text-green-600"
+            >
               Recoperar senha?
             </Link>
           </View>
@@ -167,14 +170,6 @@ export default function SignIn() {
             />
             <Text className="text-white">Ou entre com Google</Text>
           </Button>
-          <View className="flex-col items-center justify-center">
-            <Text className="text-sm text-zinc-600 text-center mt-4">
-              Ainda não tem uma conta?
-            </Text>
-            <Link href={'/auth/sign-up'} className="text-green-600 font-medium">
-              Criar conta.
-            </Link>
-          </View>
         </KeyboardAwareScrollView>
 
         <Text className="text-sm text-zinc-600 text-center mt-6">

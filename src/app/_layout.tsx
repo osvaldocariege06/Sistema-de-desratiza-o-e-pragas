@@ -2,6 +2,8 @@ import { StatusBar, Text, View } from 'react-native'
 import { Slot, Redirect } from 'expo-router'
 import '../styles/global.css'
 
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
+
 import {
   useFonts,
   Poppins_400Regular,
@@ -9,7 +11,6 @@ import {
   Poppins_600SemiBold,
 } from '@expo-google-fonts/poppins'
 import Splash from '@/components/Splash'
-import { useEffect } from 'react'
 
 export default function Layout() {
   const [fontsLoaded] = useFonts({
@@ -23,7 +24,7 @@ export default function Layout() {
   }
 
   return (
-    <>
+    <GestureHandlerRootView style={{ flex: 1 }}>
       <StatusBar
         barStyle={'dark-content'}
         backgroundColor={'transparent'}
@@ -31,6 +32,6 @@ export default function Layout() {
       />
       <Slot />
       <Redirect href={'/auth/sign-in'} />
-    </>
+    </GestureHandlerRootView>
   )
 }
