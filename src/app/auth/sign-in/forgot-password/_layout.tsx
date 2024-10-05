@@ -15,33 +15,18 @@ export default function Layout() {
         },
       }}
     >
-      {/* <StatusBar
-        barStyle={'light-content'}
-        backgroundColor={colors.green[600]}
-      /> */}
       {/* Optionally configure static options outside the route.*/}
       <Stack.Screen
         name="index"
         options={{
-          title: 'Minhas Demandas',
+          title: 'Recuperar Senha',
           headerShown: false,
         }}
       />
       <Stack.Screen
-        name="notification/index"
+        name="confirm-code/index"
         options={{
-          title: '',
-        }}
-      />
-      <Stack.Screen
-        name="filter-demands/index"
-        options={{
-          title: '',
-        }}
-      />
-      <Stack.Screen
-        name="details/[id]"
-        options={{
+          headerShown: false,
           title: '',
         }}
       />

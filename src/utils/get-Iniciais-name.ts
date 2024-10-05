@@ -1,5 +1,8 @@
-export function getIniciais(nome: string) {
-  const nomeCompleto = nome.split(' ')
-  const iniciais = nomeCompleto.map((nome) => nome[0]).join('')
+export function getIniciais(name: string) {
+  if (typeof name !== 'string') return
+
+  const fullname = name.split(' ')
+  const iniciais = fullname.map(name => name[0]).join('')
+
   return iniciais
 }

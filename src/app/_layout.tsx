@@ -12,6 +12,7 @@ import {
   Poppins_600SemiBold,
 } from '@expo-google-fonts/poppins'
 import Splash from '@/components/Splash'
+import { colors } from '@/styles/colors'
 
 export default function Layout() {
   const [fontsLoaded] = useFonts({
@@ -28,7 +29,7 @@ export default function Layout() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <StatusBar
         barStyle={'dark-content'}
-        backgroundColor={'transparent'}
+        backgroundColor={colors.green[600]}
         translucent
       />
       <Slot />

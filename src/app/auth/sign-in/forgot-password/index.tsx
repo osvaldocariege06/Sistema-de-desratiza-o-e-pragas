@@ -1,12 +1,4 @@
-import {
-  View,
-  Text,
-  ScrollView,
-  Keyboard,
-  Alert,
-  TouchableOpacity,
-  Pressable,
-} from 'react-native'
+import { View, Text, ScrollView, Keyboard } from 'react-native'
 import React, { type RefObject, useRef, useState } from 'react'
 
 import { router } from 'expo-router'
@@ -18,7 +10,6 @@ import zod from 'zod'
 import { Input } from '@/components/Input'
 import { Button } from '@/components/Button'
 import type { TextInput } from 'react-native'
-import { ChevronLeft } from 'lucide-react-native'
 
 type FormData = {
   email: string
@@ -51,7 +42,7 @@ export default function SignUp() {
     Keyboard.dismiss()
     console.log(data)
     setIsLoading(true)
-    router.push('/auth/confirm-code')
+    router.push('/auth/sign-in/forgot-password/confirm-code')
   }
 
   const handleOnSubmitEditing = (ref: RefObject<TextInput>) => {
@@ -62,15 +53,6 @@ export default function SignUp() {
 
   return (
     <ScrollView className="relative p-4 flex-1">
-      <Pressable
-        onPress={() => router.back()}
-        className="flex-row mt-10 items-center gap-2"
-      >
-        <View className="w-8 h-8 flex-row justify-center items-center bg-green-600 rounded-full">
-          <ChevronLeft color={'#fff'} />
-        </View>
-        <Text>Voltar</Text>
-      </Pressable>
       <View className="flex-col justify-between flex-1">
         <Text className="mt-16 text-xl font-semibold">Recuperar Senha</Text>
         <Text className="mt-2 text-xs text-zinc-400">

@@ -41,7 +41,7 @@ export default function FilterDemands() {
 
   const data = useMemo(
     () =>
-      Array(50)
+      Array(10)
         .fill(0)
         .map((_, index) => `index-${index}`),
     []

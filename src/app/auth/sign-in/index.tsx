@@ -146,7 +146,7 @@ export default function SignIn() {
               <Text className="text-xs">Lembrar este dispositivo</Text>
             </View>
             <Link
-              href={'/auth/forgot-password'}
+              href={'/auth/sign-in/forgot-password'}
               className="text-xs text-green-600"
             >
               Recoperar senha?

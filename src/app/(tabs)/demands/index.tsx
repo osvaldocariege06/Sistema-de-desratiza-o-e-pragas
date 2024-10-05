@@ -8,9 +8,9 @@ import {
   TextInput,
 } from 'react-native'
 import React from 'react'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/Avatar'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/Avatar'
 import { colors } from '@/styles/colors'
-import { Filter, Menu, Search } from 'lucide-react-native'
+import { BellDot, Filter, Search } from 'lucide-react-native'
 import { Link } from 'expo-router'
 import { Demand } from '@/components/Demand'
 
@@ -42,9 +42,9 @@ export default function Demands() {
             </View>
           </View>
 
-          <Pressable className="border border-white rounded-full p-2 active:scale-95 transition-transform">
-            <Menu size={18} color={'#FFF'} />
-          </Pressable>
+          <Link href={'/(tabs)/demands/notification'}>
+            <BellDot size={24} color={'#FFF'} />
+          </Link>
         </View>
 
         <View className="p-4 gap-4">

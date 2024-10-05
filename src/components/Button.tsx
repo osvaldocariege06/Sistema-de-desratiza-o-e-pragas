@@ -3,7 +3,6 @@ import {
   ActivityIndicator,
   Pressable,
   Text,
-  TouchableOpacity,
   type TextProps,
   type TouchableOpacityProps,
 } from 'react-native'
@@ -13,12 +12,15 @@ type ButtonProps = TouchableOpacityProps & {
   variant?: Variants
   isLoading?: boolean
 }
+type TitleProps = TextProps & {
+  className?: string
+}
 
 function Button({ variant, isLoading, children, ...rest }: ButtonProps) {
   return (
     <Pressable
       className={clsx(
-        'h-11 rounded-lg flex-row justify-center items-center gap-4 active:scale-95 transition-transform disabled:bg-green-950',
+        'h-11 rounded-lg flex-row justify-center items-center gap-4 disabled:bg-green-950',
         {
           'bg-green-600': variant === 'primary',
           'bg-zinc-800': variant === 'secondary',
@@ -33,8 +35,12 @@ function Button({ variant, isLoading, children, ...rest }: ButtonProps) {
   )
 }
 
-function Title({ children }: TextProps) {
-  return <Text>{children}</Text>
+function Title({ children, ...rest }: TitleProps) {
+  return (
+    <Text className="tex-sm" {...rest}>
+      {children}
+    </Text>
+  )
 }
 
 Button.Title = Title
