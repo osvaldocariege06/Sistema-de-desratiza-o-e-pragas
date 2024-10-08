@@ -71,13 +71,16 @@ export default function Demands() {
               <Text className="text-sm text-zinc-50">Todas</Text>
             </Pressable>
             <Pressable className="rounded-2xl px-4 py-2 border border-zinc-400 active:scale-95 transition-transform">
+              <Text className="text-sm text-zinc-500">Agendadas</Text>
+            </Pressable>
+            <Pressable className="rounded-2xl px-4 py-2 border border-zinc-400 active:scale-95 transition-transform">
               <Text className="text-sm text-zinc-500">Pendentes</Text>
             </Pressable>
             <Pressable className="rounded-2xl px-4 py-2 border border-zinc-400 active:scale-95 transition-transform">
               <Text className="text-sm text-zinc-500">Em andamento</Text>
             </Pressable>
             <Pressable className="rounded-2xl px-4 py-2 border border-zinc-400 active:scale-95 transition-transform">
-              <Text className="text-sm text-zinc-500">Concluídos</Text>
+              <Text className="text-sm text-zinc-500">Concluídas</Text>
             </Pressable>
           </View>
 

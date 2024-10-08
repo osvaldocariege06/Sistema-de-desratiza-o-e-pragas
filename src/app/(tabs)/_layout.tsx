@@ -2,12 +2,13 @@ import { colors } from '@/styles/colors'
 import { Tabs } from 'expo-router'
 import { Home, Plus, User } from 'lucide-react-native'
 import { usePathname } from 'expo-router'
-import { useState } from 'react'
+import { View } from 'react-native'
 
+export const userType = {
+  owner: false,
+}
 export default function TabLayout() {
   const pathname = usePathname()
-
-  const [userType, setUserType] = useState<'owner' | 'user'>('owner')
 
   return (
     <Tabs
@@ -35,11 +36,23 @@ export default function TabLayout() {
       <Tabs.Screen
         name="create-demands/index"
         options={{
-          href: userType !== 'owner' ? '' : null,
+          href: userType.owner ? undefined : null,
           title: '',
           headerShown: false,
-          tabBarIcon: ({ color }) => <Plus size={28} color={color} />,
-          tabBarStyle: { display: 'none' },
+          tabBarIcon: () => (
+            <View
+              style={{
+                backgroundColor: colors.green[600],
+                padding: 8,
+                borderRadius: 100,
+                justifyContent: 'center',
+                alignItems: 'center',
+                overflow: 'hidden',
+              }}
+            >
+              <Plus size={28} color={colors.zinc[50]} />
+            </View>
+          ),
         }}
       />
       <Tabs.Screen

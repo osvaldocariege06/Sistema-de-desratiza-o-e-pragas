@@ -22,14 +22,16 @@ import { Avatar } from '@/components/Avatar'
 import dayjs from 'dayjs'
 import { formateDate } from '@/utils/format-date'
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet'
+import { EditDemand } from '@/components/demands/EditDemand'
+import { userType } from '../../_layout'
 
 export default function Info() {
   const { id } = useLocalSearchParams() // Obter o "id" da URL
   const router = useRouter()
 
   const [options, setOptions] = useState<
-    'description' | 'details' | 'status' | 'files'
-  >('description')
+    'details' | 'status' | 'files' | 'edit'
+  >('details')
 
   const [moreOptions, setMoreOptions] = useState<'compartments' | 'cars'>(
     'compartments'
@@ -42,6 +44,9 @@ export default function Info() {
     bottomSheetRefCompartment.current?.expand()
   const handleOpenCars = () => bottomSheetRefCars.current?.expand()
 
+  const bottomSheetRefAddCar = useRef<BottomSheet>(null)
+  const handleOpenAddCars = () => bottomSheetRefAddCar.current?.expand()
+
   return (
     <ScrollView className="flex-1">
       <View className="flex-1 h-[223px] rounded-2xl bg-zinc-200 justify-center items-center p-4">
@@ -52,21 +57,11 @@ export default function Info() {
           <Text className="text-xl font-semibold">Desratização em galpão</Text>
           <View className="mt-4 justify-between items-center flex-row">
             <Pressable
-              onPress={() => setOptions('description')}
-              className={`flex-1  py-1 text-center justify-center items-center ${options === 'description' && 'border-b border-green-600'}`}
-            >
-              <Text
-                className={`text-sm ${options === 'description' ? 'text-green-600 font-medium' : 'text-zinc-400'}`}
-              >
-                Descrição
-              </Text>
-            </Pressable>
-            <Pressable
               onPress={() => setOptions('details')}
               className={`flex-1  py-1 text-center justify-center items-center ${options === 'details' && 'border-b border-green-600'}`}
             >
               <Text
-                className={`text-sm ${options === 'details' ? 'text-green-600 font-medium' : 'text-zinc-400'}`}
+                className={`text-sm ${options === 'details' ? 'text-green-600' : 'text-zinc-400'}`}
               >
                 Detalhes
               </Text>
@@ -76,9 +71,9 @@ export default function Info() {
               className={`flex-1  py-1 text-center justify-center items-center ${options === 'status' && 'border-b border-green-600'}`}
             >
               <Text
-                className={`text-sm ${options === 'status' ? 'text-green-600 font-medium' : 'text-zinc-400'}`}
+                className={`text-sm ${options === 'status' ? 'text-green-600' : 'text-zinc-400'}`}
               >
-                Estado
+                Intervenção
               </Text>
             </Pressable>
             <Pressable
@@ -86,23 +81,13 @@ export default function Info() {
               className={`flex-1  py-1 text-center justify-center items-center ${options === 'files' && 'border-b border-green-600'}`}
             >
               <Text
-                className={`text-sm ${options === 'files' ? 'text-green-600 font-medium' : 'text-zinc-400'}`}
+                className={`text-sm ${options === 'files' ? 'text-green-600' : 'text-zinc-400'}`}
               >
                 Anexos
               </Text>
             </Pressable>
           </View>
         </View>
-
-        {/* DESCRIPTIONS */}
-        {options === 'description' && (
-          <Description
-            description="Lorem ipsum dolor sit amet, consectetur adipisi cing elit, sed
-                do eiusmod mpor incididunt ut lab ore et dolore magna aliqua. Ut
-                enim."
-          />
-        )}
-
         {/* DETAILS */}
         {options === 'details' && (
           <View className="gap-3 p-4">
@@ -118,10 +103,74 @@ export default function Info() {
 
             <View className="border border-zinc-200 p-3 rounded-2xl">
               <View className="flex-row items-center gap-2">
-                <Users size={16} color={colors.zinc[500]} />
+                <User size={16} color={colors.zinc[500]} />
                 <Text className="text-sm text-zinc-500">
-                  Equipa Responsável
+                  Técnico responsável do cliente:
                 </Text>
+              </View>
+              <Text className="text-sm font-semibold text-green-600 ml-4">
+                Jordan Harper
+              </Text>
+            </View>
+
+            <View className="border border-zinc-200 p-3 rounded-2xl">
+              <View className="flex-row items-center gap-2">
+                <MapPin size={16} color={colors.zinc[500]} />
+                <Text className="text-sm text-zinc-500">Localização</Text>
+              </View>
+              <Text className="text-sm font-semibold text-green-600 ml-4">
+                Luanda, KM 30, rua G
+              </Text>
+            </View>
+
+            <View className="border border-zinc-200 p-3 rounded-2xl">
+              <View className="flex-row items-center gap-2">
+                <CalendarIcon size={16} color={colors.zinc[500]} />
+                <Text className="text-sm text-zinc-500">Data</Text>
+              </View>
+              <View className="flex-row gap-1 items-center mt-2">
+                <Text className="text-sm text-zinc-500 ml-4">Prevista:</Text>
+                <Text className="text-sm font-semibold text-green-600">
+                  {formateDate(dayjs().toDate())}
+                </Text>
+              </View>
+              <View className="flex-row gap-1 items-center mt-2">
+                <Text className="text-sm text-zinc-500 ml-4">
+                  Hora de Saída da base:
+                </Text>
+                <Text className="text-sm font-semibold text-green-600">
+                  {formateDate(dayjs().add(10, 'days').toDate())}
+                </Text>
+              </View>
+              <View className="flex-row gap-1 items-center mt-2">
+                <Text className="text-sm text-zinc-500 ml-4">
+                  Hora de chegada ao cliente:
+                </Text>
+                <Text className="text-sm font-semibold text-green-600">
+                  {formateDate(dayjs().add(10, 'days').toDate())}
+                </Text>
+              </View>
+              <View className="flex-row gap-1 items-center mt-2">
+                <Text className="text-sm text-zinc-500 ml-4">
+                  Início de execução:
+                </Text>
+                <Text className="text-sm font-semibold text-green-600">
+                  {formateDate(dayjs().add(10, 'days').toDate())}
+                </Text>
+              </View>
+
+              <View className="flex-row gap-1 items-center mt-2">
+                <Text className="text-sm text-zinc-500 ml-4">Término:</Text>
+                <Text className="text-sm font-semibold text-green-600">
+                  {formateDate(dayjs().add(1, 'M').toDate())}
+                </Text>
+              </View>
+            </View>
+
+            <View className="border border-zinc-200 p-3 rounded-2xl">
+              <View className="flex-row items-center gap-2">
+                <Users size={16} color={colors.zinc[500]} />
+                <Text className="text-sm text-zinc-500">Equipa Tecnica</Text>
               </View>
               <View className="flex-row mt-3">
                 <Avatar
@@ -147,70 +196,6 @@ export default function Info() {
                   fallback="Ricardo Jefferson"
                   className="bg-orange-600 "
                 />
-              </View>
-            </View>
-
-            <View className="border border-zinc-200 p-3 rounded-2xl">
-              <View className="flex-row items-center gap-2">
-                <MapPin size={16} color={colors.zinc[500]} />
-                <Text className="text-sm text-zinc-500">Localização</Text>
-              </View>
-              <Text className="text-sm font-semibold text-green-600 ml-4">
-                Luanda, KM 30, rua G
-              </Text>
-            </View>
-
-            <View className="border border-zinc-200 p-3 rounded-2xl">
-              <View className="flex-row items-center gap-2">
-                <CalendarIcon size={16} color={colors.zinc[500]} />
-                <Text className="text-sm text-zinc-500">Localização</Text>
-              </View>
-              <View className="flex-row gap-1 items-center mt-2">
-                <Text className="text-sm text-zinc-500 ml-4">Prevista:</Text>
-                <Text className="text-sm font-semibold text-green-600">
-                  {formateDate(dayjs().toDate())}
-                </Text>
-              </View>
-              <View className="flex-row gap-1 items-center mt-2">
-                <Text className="text-sm text-zinc-500 ml-4">
-                  Início de execução:
-                </Text>
-                <Text className="text-sm font-semibold text-green-600">
-                  {formateDate(dayjs().add(10, 'days').toDate())}
-                </Text>
-              </View>
-              <View className="flex-row gap-1 items-center mt-2">
-                <Text className="text-sm text-zinc-500 ml-4">Término:</Text>
-                <Text className="text-sm font-semibold text-green-600">
-                  {formateDate(dayjs().add(1, 'M').toDate())}
-                </Text>
-              </View>
-            </View>
-
-            <View className="border border-zinc-200 p-3 rounded-2xl">
-              <View className="flex-row items-center gap-2">
-                <PencilLine size={16} color={colors.zinc[500]} />
-                <Text className="text-sm text-zinc-500">Assinatura QSA</Text>
-              </View>
-              <View className="flex-row gap-1 items-center mt-2">
-                <Text className="text-sm text-zinc-500 ml-4">Responsavel:</Text>
-                <Text className="text-sm font-semibold text-green-600">
-                  Agnes James
-                </Text>
-              </View>
-              <View className="flex-row gap-1 items-center mt-2">
-                <Text className="text-sm text-zinc-500 ml-4">Data:</Text>
-                <Text className="text-sm font-semibold text-green-600">
-                  {formateDate(dayjs().add(1, 'M').toDate())}
-                </Text>
-              </View>
-              <View className="flex-row gap-1 items-center mt-2">
-                <Text className="text-sm text-zinc-500 ml-4">Assinatura:</Text>
-                <View className="border-b border-green-600">
-                  <Text className="text-sm font-semibold text-green-600">
-                    Agnes James
-                  </Text>
-                </View>
               </View>
             </View>
 
@@ -297,9 +282,35 @@ export default function Info() {
                 </View>
               )}
             </View>
+
+            <View className="border border-zinc-200 p-3 rounded-2xl">
+              <View className="flex-row items-center gap-2">
+                <PencilLine size={16} color={colors.zinc[500]} />
+                <Text className="text-sm text-zinc-500">Assinatura QSA</Text>
+              </View>
+              <View className="flex-row gap-1 items-center mt-2">
+                <Text className="text-sm text-zinc-500 ml-4">Responsavel:</Text>
+                <Text className="text-sm font-semibold text-green-600">
+                  Agnes James
+                </Text>
+              </View>
+              <View className="flex-row gap-1 items-center mt-2">
+                <Text className="text-sm text-zinc-500 ml-4">Data:</Text>
+                <Text className="text-sm font-semibold text-green-600">
+                  {formateDate(dayjs().add(1, 'M').toDate())}
+                </Text>
+              </View>
+              <View className="flex-row gap-1 items-center mt-2">
+                <Text className="text-sm text-zinc-500 ml-4">Assinatura:</Text>
+                <View className="border-b border-green-600">
+                  <Text className="text-sm font-semibold text-green-600">
+                    Agnes James
+                  </Text>
+                </View>
+              </View>
+            </View>
           </View>
         )}
-
         {/* STATUS */}
         {options === 'status' && (
           <View className="px-4">
@@ -313,7 +324,7 @@ export default function Info() {
                     Pendente
                   </Text>
                 </Pressable>
-                <Pressable className="py-2 px-4 rounded-2xl border border-orange-600 justify-center items-center">
+                {/* <Pressable className="py-2 px-4 rounded-2xl border border-orange-600 justify-center items-center">
                   <Text className="text-sm font-semibold text-orange-600">
                     Em andamento
                   </Text>
@@ -322,12 +333,11 @@ export default function Info() {
                   <Text className="text-sm font-semibold text-green-600">
                     Concluído
                   </Text>
-                </Pressable>
+                </Pressable> */}
               </View>
             </View>
           </View>
         )}
-
         {/* ANEXOS */}
         {options === 'files' && (
           <View className="pl-4 mb-8">
@@ -464,6 +474,32 @@ export default function Info() {
               </View>
               <Text className="text-sm font-semibold text-green-600 ml-4">
                 LD-54-63-AO
+              </Text>
+            </View>
+          </BottomSheetView>
+        </BottomSheet>
+        {/* EDIT DEMAND */}
+        {options === 'status' && (
+          <EditDemand handleOpenAddCars={handleOpenAddCars} />
+        )}
+        {/* CAR */}
+        <BottomSheet
+          snapPoints={['45%']}
+          ref={bottomSheetRefAddCar}
+          index={-1}
+          enablePanDownToClose={true}
+        >
+          <BottomSheetView className="flex-1 bg-zinc-50 gap-3 p-4">
+            <View className="justify-center items-center">
+              <Car size={120} color={colors.green[600]} />
+            </View>
+            <View className="border border-zinc-200 p-3 rounded-2xl">
+              <View className="flex-row items-center gap-2">
+                <User size={16} color={colors.zinc[500]} />
+                <Text className="text-sm text-zinc-500">Motorista</Text>
+              </View>
+              <Text className="text-sm font-semibold text-green-600 ml-4">
+                John Doe
               </Text>
             </View>
           </BottomSheetView>

@@ -161,7 +161,7 @@ export default function SignIn() {
             <Text className="text-white">Entrar</Text>
           </Button>
 
-          <View className="bg-zinc-300 h-px my-6" />
+          {/* <View className="bg-zinc-300 h-px my-6" />
 
           <Button variant="secondary">
             <Image
@@ -169,7 +169,7 @@ export default function SignIn() {
               className="w-5 h-5"
             />
             <Text className="text-white">Ou entre com Google</Text>
-          </Button>
+          </Button> */}
         </KeyboardAwareScrollView>
 
         <Text className="text-sm text-zinc-600 text-center mt-6">

@@ -1,6 +1,5 @@
 import { colors } from '@/styles/colors'
 import { Stack } from 'expo-router'
-import { StatusBar } from 'react-native'
 
 export default function Layout() {
   return (
@@ -15,11 +14,6 @@ export default function Layout() {
         },
       }}
     >
-      {/* <StatusBar
-        barStyle={'light-content'}
-        backgroundColor={colors.green[600]}
-      /> */}
-      {/* Optionally configure static options outside the route.*/}
       <Stack.Screen
         name="index"
         options={{

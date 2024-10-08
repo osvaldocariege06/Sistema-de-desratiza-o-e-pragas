@@ -16,7 +16,6 @@ import type BottomSheet from '@gorhom/bottom-sheet'
 
 import { Calendar } from '@/components/Calendar'
 import { formateDate } from '@/utils/format-date'
-import dayjs from 'dayjs'
 import { BottomSheetOurTeam } from '@/components/bottom-sheets/OurTeam'
 import { ButtonStatus } from '@/components/ButtonStatus'
 
