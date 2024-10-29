@@ -7,7 +7,6 @@ import {
   View,
 } from 'react-native'
 
-import { cn } from '../lib/utils'
 import { colors } from '@/styles/colors'
 import { Eye, EyeOff } from 'lucide-react-native'
 
@@ -42,7 +41,7 @@ function Field({ innerRef, ...rest }: FieldProps) {
   return (
     <TextInput
       ref={innerRef}
-      className="border-0 bg-zinc-100 h-14 rounded-md px-4 text-sm"
+      className="border-0 bg-zinc-200 h-14 rounded-md px-4 text-sm"
       placeholderTextColor={colors.zinc[400]}
       {...rest}
     />
@@ -56,10 +55,10 @@ function FieldPassword({
   ...rest
 }: FieldPasswordProps) {
   return (
-    <View className="bg-zinc-100 h-14 px-4 rounded-md flex flex-row justify-between items-center">
+    <View className="bg-zinc-200 h-14 px-4 rounded-md flex flex-row justify-between items-center">
       <TextInput
         ref={innerRef}
-        className="border-0 bg-zinc-100 h-full rounded-md text-sm"
+        className="border-0 bg-zinc-200 flex-1 h-full rounded-md text-sm"
         placeholderTextColor={colors.zinc[400]}
         secureTextEntry={showPassword}
         {...rest}

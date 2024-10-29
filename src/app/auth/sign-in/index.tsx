@@ -1,10 +1,10 @@
 import {
   View,
   Text,
-  Image,
   ScrollView,
   type TextInput,
   Keyboard,
+  Alert,
 } from 'react-native'
 import React, { type RefObject, useRef, useState } from 'react'
 import { Link, router } from 'expo-router'
@@ -17,8 +17,10 @@ import { Input } from '@/components/Input'
 import { Switch } from '@/components/Switch'
 import { Button } from '@/components/Button'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { api } from '@/lib/axios'
+import { useAuthStore } from '@/stores/authStore'
 
-type FormData = {
+type LoginRequest = {
   email: string
   password: string
 }
@@ -37,11 +39,13 @@ export default function SignIn() {
   const [isLoading, setIsLoading] = useState(false)
   const [saveDevice, setSaveDevice] = useState(false)
 
+  const { login } = useAuthStore()
+
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
+  } = useForm<LoginRequest>({
     resolver: zodResolver(schema),
     defaultValues: {
       email: '',
@@ -49,14 +53,28 @@ export default function SignIn() {
     },
   })
 
-  function onSubmit(data: FormData) {
+  async function onSubmit({ email, password }: LoginRequest) {
     Keyboard.dismiss()
     setIsLoading(true)
-    router.replace('/(tabs)/demands')
+
     try {
-      console.log(data)
+      // if (email !== 'user@example.com' || password !== 'securepassword') {
+      //   setIsLoading(false)
+      //   return Alert.alert('Login', 'Erro ao fazer login')
+      // } 
+
+      // if(email !== 'user@example.com' || password !== 'securepassword'){
+
+      // }
+
+      // if(email !== 'admin@example.com' || password !== 'securepassword')
+
+      router.replace('/(tabs)/demands')
+      login(email, password)
+
+      Alert.alert('Login realizado com sucesso!')
     } catch (error) {
-      console.log(error)
+      Alert.alert('Login', 'Erro ao fazer login')
     } finally {
       setIsLoading(false)
     }
@@ -89,6 +107,7 @@ export default function SignIn() {
                   <Input.Field
                     keyboardType="email-address"
                     placeholder="Digite seu e-mail"
+                    autoCapitalize='none'
                     editable={!isLoading}
                     onBlur={onBlur}
                     onChangeText={onChange}
@@ -145,7 +164,10 @@ export default function SignIn() {
               />
               <Text className="text-xs">Lembrar este dispositivo</Text>
             </View>
-            <Link href={'/'} className="text-xs text-green-600">
+            <Link
+              href={'/auth/sign-in/forgot-password'}
+              className="text-xs text-green-600"
+            >
               Recoperar senha?
             </Link>
           </View>
@@ -157,24 +179,6 @@ export default function SignIn() {
           >
             <Text className="text-white">Entrar</Text>
           </Button>
-
-          <View className="bg-zinc-300 h-px my-6" />
-
-          <Button variant="secondary">
-            <Image
-              source={require('@/assets/images/google.png')}
-              className="w-5 h-5"
-            />
-            <Text className="text-white">Ou entre com Google</Text>
-          </Button>
-          <View className="flex-col items-center justify-center">
-            <Text className="text-sm text-zinc-600 text-center mt-4">
-              Ainda não tem uma conta?
-            </Text>
-            <Link href={'/auth/sign-up'} className="text-green-600 font-medium">
-              Criar conta.
-            </Link>
-          </View>
         </KeyboardAwareScrollView>
 
         <Text className="text-sm text-zinc-600 text-center mt-6">
