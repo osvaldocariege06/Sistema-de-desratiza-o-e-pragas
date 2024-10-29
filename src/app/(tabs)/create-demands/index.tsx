@@ -124,7 +124,6 @@ export default function CreateDemand() {
         'Selecione uma equipe para esta demanda.'
       )
     }
-    // router.replace('/(tabs)/demands')
     try {
       console.log({
         Client: data.clientName,
@@ -139,6 +138,7 @@ export default function CreateDemand() {
       setIsLoading(false)
     }
   }
+
 
   return (
     <SafeAreaView style={{ flex: 1 }}>

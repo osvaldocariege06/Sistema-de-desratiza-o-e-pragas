@@ -7,7 +7,7 @@ import { Avatar } from './Avatar'
 
 export function Demand() {
   return (
-    <Link href={'/(tabs)/demands/details/[id]'} className="flex-1" asChild>
+    <Link href={`/(tabs)/demands/details/[${'id'}]`} className="flex-1" asChild>
       <Pressable className="border border-zinc-300 rounded-2xl p-4 mb-3">
         <View className="flex-row items-start justify-between">
           <View>

@@ -6,12 +6,20 @@ import { Fingerprint, Lock, LogOut, Menu, User } from 'lucide-react-native'
 import { getIniciais } from '@/utils/get-Iniciais-name'
 import { colors } from '@/styles/colors'
 import { Button } from '@/components/Button'
+import { useAuthStore } from '@/stores/authStore'
+import { router } from 'expo-router'
 
 export default function Profile() {
   const [enableTouchId, setEnableTouchId] = useState(false)
+  const { user, logout, isAdmin } = useAuthStore()
 
   function handleEnableTouchId() {
     setEnableTouchId(!enableTouchId)
+  }
+
+  async function handleLogout() {
+    await logout()
+    router.replace('/auth/sign-in')
   }
 
   return (
@@ -38,13 +46,13 @@ export default function Profile() {
                 Osvaldo Cariege
               </Text>
               <Text className="text-sm text-green-600 font-regular">
-                osvaldocariege06@gmail.com
+                {user || 'email address'}
               </Text>
             </View>
           </View>
         </View>
 
-        <View className="flex-col gap-4 p-4 mt-8">
+        <View className="flex-col gap-4 p-4 mt-8 flex-1">
           <View className="border border-zinc-200 p-3 gap-2 rounded-2xl">
             <Text className="text-sm font-semibold text-green-600 ml-4">
               Meus dados
@@ -53,7 +61,7 @@ export default function Profile() {
               <User size={16} color={colors.zinc[500]} />
               <Text className="text-sm text-zinc-500">Cargo:</Text>
               <Text className="text-sm text-zinc-500 font-medium">
-                Operador
+                {isAdmin ? 'Responsável' : 'Operador'}
               </Text>
             </View>
           </View>
@@ -78,10 +86,10 @@ export default function Profile() {
               </Pressable>
             </View>
           </View>
-          <Button variant="secondary">
+          <Pressable onPress={handleLogout} className='mt-20 bg-zinc-800 text-zinc-100 flex-row gap-2 h-12 rounded-md justify-center items-center'>
             <LogOut size={16} color={colors.zinc[100]} />
-            <Button.Title className="text-white">Terminar sessão</Button.Title>
-          </Button>
+            <Text className="text-white">Terminar sessão</Text>
+          </Pressable>
         </View>
       </ScrollView>
     </SafeAreaView>
