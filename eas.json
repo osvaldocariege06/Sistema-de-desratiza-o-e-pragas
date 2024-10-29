@@ -12,7 +12,13 @@
       "distribution": "internal"
     },
     "production": {
-      "autoIncrement": true
+      "autoIncrement": true,
+      "cache": {
+        "key": "0.0.1"
+      },
+      "env": {
+        "NODE_OPTIONS": "--max-old-space-size=4096"
+      }
     }
   },
   "submit": {
