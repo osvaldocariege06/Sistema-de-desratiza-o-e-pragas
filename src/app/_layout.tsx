@@ -1,6 +1,6 @@
 import { StatusBar, Text, View } from 'react-native'
 import { Slot, Redirect } from 'expo-router'
-import '../styles/global.css'
+import '../../global.css'
 import '@/utils/dayjs-config'
 
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
