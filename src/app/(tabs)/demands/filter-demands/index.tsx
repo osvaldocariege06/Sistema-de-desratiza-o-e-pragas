@@ -6,8 +6,9 @@ import {
   StatusBar,
   Pressable,
   TextInput,
+  Alert,
 } from 'react-native'
-import React, { useMemo, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 
 import { colors } from '@/styles/colors'
 import { Calendar as CalendarIcon, Plus, Search } from 'lucide-react-native'
@@ -65,6 +66,12 @@ export default function FilterDemands() {
     setFilterTeam(prevState => prevState.filter(name => name !== username))
     setTeams(prevState => [...prevState, username])
   }
+
+  useEffect(() => {
+    if (endDate < initialDate) {
+      return Alert.alert('Invalid date')
+    }
+  }, [endDate, initialDate])
 
   return (
     <SafeAreaView className="flex-1">

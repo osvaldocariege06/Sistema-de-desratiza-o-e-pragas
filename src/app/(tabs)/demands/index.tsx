@@ -6,6 +6,7 @@ import {
   StatusBar,
   Pressable,
   TextInput,
+  TouchableOpacity,
 } from 'react-native'
 import React from 'react'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/Avatar'
@@ -48,11 +49,12 @@ export default function Demands() {
         </View>
 
         <View className="p-4 gap-4">
-          <Link
-            href={'/(tabs)/demands/filter-demands'}
-            className="flex-row gap-2 text-sm items-center text-zinc-500 text-right"
-          >
-            Todos filtros <Filter size={16} color={colors.zinc[500]} />
+          <Link href={'/(tabs)/demands/filter-demands'} asChild>
+            <TouchableOpacity>
+              <Text className="flex-row gap-2 text-sm items-center text-zinc-500 text-right">
+                Todos filtros <Filter size={16} color={colors.zinc[500]} />
+              </Text>
+            </TouchableOpacity>
           </Link>
 
           <View className="bg-zinc-200 rounded-2xl flex-row h-14 items-center px-4 gap-2">

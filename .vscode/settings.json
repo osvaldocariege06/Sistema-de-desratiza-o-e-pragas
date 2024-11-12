@@ -3,5 +3,8 @@
   "editor.defaultFormatter": "biomejs.biome",
   "cSpell.words": [
     "zustand"
-  ]
+  ],
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  }
 }

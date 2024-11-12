@@ -11,9 +11,9 @@ export function Demand() {
       <Pressable className="border border-zinc-300 rounded-2xl p-4 mb-3">
         <View className="flex-row items-start justify-between">
           <View>
-            <Text className="text-xs text-green-600">Luanda, KM 30, rua G</Text>
+            <Text className="text-xs text-green-600">Edward Bates</Text>
             <Text className="text-base text-zinc-600 font-medium tracking-wide leading-relaxed">
-              Desratização em galpão
+              1196 Imoti Point
             </Text>
           </View>
           <Pressable className="border border-zinc-300 w-6 h-6 rounded-full justify-center items-center active:scale-90 transition-transform">

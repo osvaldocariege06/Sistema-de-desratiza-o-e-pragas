@@ -17,12 +17,18 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: colors.green[600],
+
         tabBarStyle: {
-          height: pathname !== '/demands' && pathname !== '/profile' && pathname !== '/create-demands'
-            ? 0
-            : 70,
+          height:
+            pathname !== '/demands' &&
+            pathname !== '/profile' &&
+            pathname !== '/create-demands'
+              ? 0
+              : 70,
           display:
-            pathname !== '/demands' && pathname !== '/profile' && pathname !== '/create-demands'
+            pathname !== '/demands' &&
+            pathname !== '/profile' &&
+            pathname !== '/create-demands'
               ? 'none'
               : 'flex',
         },
@@ -35,9 +41,15 @@ export default function TabLayout() {
           headerShown: false,
           tabBarIconStyle: { marginTop: -10 },
           tabBarLabel: ({ focused }) => (
-            <Text className={`text-xs mb-2  ${focused ? 'text-green-600' : 'text-zinc-500'}`}>Demandas</Text>
+            <Text
+              className={`text-xs mb-2  ${focused ? 'text-green-600' : 'text-zinc-500'}`}
+            >
+              Demandas
+            </Text>
           ),
-          tabBarIcon: ({ color }) => <Home size={28} color={color} style={{ marginTop: 20 }} />,
+          tabBarIcon: ({ color }) => (
+            <Home size={28} color={color} style={{ marginTop: 20 }} />
+          ),
         }}
       />
       <Tabs.Screen
@@ -48,7 +60,11 @@ export default function TabLayout() {
           headerShown: false,
           tabBarIconStyle: { marginTop: 14 },
           tabBarLabel: ({ focused }) => (
-            <Text className={`text-xs mb-2 mt-2  ${focused ? 'text-green-600' : 'text-zinc-500'}`}>Criar</Text>
+            <Text
+              className={`text-xs mb-2 mt-2  ${focused ? 'text-green-600' : 'text-zinc-500'}`}
+            >
+              Criar
+            </Text>
           ),
           tabBarIcon: () => (
             <Pressable
@@ -74,9 +90,15 @@ export default function TabLayout() {
           headerShown: false,
           tabBarIconStyle: { marginTop: -10 },
           tabBarLabel: ({ focused }) => (
-            <Text className={`text-xs mb-2  ${focused ? 'text-green-600' : 'text-zinc-500'}`}>Perfil</Text>
+            <Text
+              className={`text-xs mb-2  ${focused ? 'text-green-600' : 'text-zinc-500'}`}
+            >
+              Perfil
+            </Text>
           ),
-          tabBarIcon: ({ color }) => <User size={28} color={color} style={{ marginTop: 20 }} />,
+          tabBarIcon: ({ color }) => (
+            <User size={28} color={color} style={{ marginTop: 20 }} />
+          ),
         }}
       />
     </Tabs>

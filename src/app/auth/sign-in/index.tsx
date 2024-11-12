@@ -5,9 +5,10 @@ import {
   type TextInput,
   Keyboard,
   Alert,
+  TouchableOpacity,
 } from 'react-native'
 import React, { type RefObject, useRef, useState } from 'react'
-import { Link, router } from 'expo-router'
+import { Link } from 'expo-router'
 
 import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -57,27 +58,7 @@ export default function SignIn() {
     Keyboard.dismiss()
     setIsLoading(true)
 
-    try {
-      // if (email !== 'user@example.com' || password !== 'securepassword') {
-      //   setIsLoading(false)
-      //   return Alert.alert('Login', 'Erro ao fazer login')
-      // } 
-
-      // if(email !== 'user@example.com' || password !== 'securepassword'){
-
-      // }
-
-      // if(email !== 'admin@example.com' || password !== 'securepassword')
-
-      router.replace('/(tabs)/demands')
-      login(email, password)
-
-      Alert.alert('Login realizado com sucesso!')
-    } catch (error) {
-      Alert.alert('Login', 'Erro ao fazer login')
-    } finally {
-      setIsLoading(false)
-    }
+    login(email, password)
   }
 
   const handleOnSubmitEditing = (ref: RefObject<TextInput>) => {
@@ -107,7 +88,7 @@ export default function SignIn() {
                   <Input.Field
                     keyboardType="email-address"
                     placeholder="Digite seu e-mail"
-                    autoCapitalize='none'
+                    autoCapitalize="none"
                     editable={!isLoading}
                     onBlur={onBlur}
                     onChangeText={onChange}
@@ -162,13 +143,14 @@ export default function SignIn() {
                 value={saveDevice}
                 className="h-5"
               />
-              <Text className="text-xs">Lembrar este dispositivo</Text>
+              <Text className="text-xs -mb-2">Lembrar me</Text>
             </View>
-            <Link
-              href={'/auth/sign-in/forgot-password'}
-              className="text-xs text-green-600"
-            >
-              Recoperar senha?
+            <Link href={'/auth/sign-in/forgot-password'} asChild>
+              <TouchableOpacity activeOpacity={0.6}>
+                <Text className="text-xs text-green-600">
+                  Esqueci a minha senha?
+                </Text>
+              </TouchableOpacity>
             </Link>
           </View>
 

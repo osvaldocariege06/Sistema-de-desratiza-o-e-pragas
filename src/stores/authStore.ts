@@ -1,5 +1,7 @@
 import { create } from 'zustand';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { router } from 'expo-router';
+import { Alert } from 'react-native';
 
 
 
@@ -21,14 +23,16 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   // Login - salva o token e atualiza o estado
   login: async (email: string, password: string) => {
-    await AsyncStorage.setItem('token', email);
 
 
-    if (email === 'admin@example.com' && password === 'securepassword') {
-      return set({ token: email, isAuthenticated: true, isAdmin: true, user: email });
-    }
-    if (email === 'user@example.com' && password === 'securepassword') {
-      return set({ token: email, isAuthenticated: true, user: email, isAdmin: false, });
+    try {
+      await AsyncStorage.setItem('token', email);
+      router.replace('/(tabs)/demands')
+      Alert.alert('Login realizado com sucesso!')
+      console.log({ email, password })
+    } catch (error) {
+      Alert.alert('Login', 'Erro ao fazer login')
+
     }
 
   },
