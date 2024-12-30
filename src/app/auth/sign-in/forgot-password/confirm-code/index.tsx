@@ -44,7 +44,6 @@ export default function SignUp() {
 
   function onSubmit(data: FormData) {
     Keyboard.dismiss()
-    console.log(data)
     setIsLoading(true)
     router.replace('/(tabs)/demands')
   }

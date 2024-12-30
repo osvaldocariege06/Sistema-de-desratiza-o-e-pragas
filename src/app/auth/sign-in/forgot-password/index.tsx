@@ -40,7 +40,6 @@ export default function SignUp() {
 
   function onSubmit(data: FormData) {
     Keyboard.dismiss()
-    console.log(data)
     setIsLoading(true)
     router.push('/auth/sign-in/forgot-password/confirm-code')
   }

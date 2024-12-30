@@ -1,5 +1,6 @@
 {
   "expo": {
+    "newArchEnabled": true,
     "name": "sistema-de-desratizacao-e-pragas",
     "slug": "sistema-de-desratizacao-e-pragas",
     "version": "1.0.0",

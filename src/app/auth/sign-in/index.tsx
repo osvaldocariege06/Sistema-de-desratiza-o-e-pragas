@@ -7,8 +7,8 @@ import {
   Alert,
   TouchableOpacity,
 } from 'react-native'
-import React, { type RefObject, useRef, useState } from 'react'
-import { Link } from 'expo-router'
+import React, { type RefObject, useEffect, useRef, useState } from 'react'
+import { Link, router } from 'expo-router'
 
 import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -20,6 +20,7 @@ import { Button } from '@/components/Button'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { api } from '@/lib/axios'
 import { useAuthStore } from '@/stores/authStore'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 type LoginRequest = {
   email: string
@@ -28,7 +29,8 @@ type LoginRequest = {
 
 const schema = zod
   .object({
-    email: zod.string().email('Insira um e-mail válido!'),
+    // email: zod.string().email('Insira um e-mail válido!'),
+    email: zod.string(),
     password: zod.string().min(5, 'Senha deve ter no mínimo 6 caracteres'),
   })
   .required()
@@ -40,7 +42,7 @@ export default function SignIn() {
   const [isLoading, setIsLoading] = useState(false)
   const [saveDevice, setSaveDevice] = useState(false)
 
-  const { login } = useAuthStore()
+  const { login, isAuthenticated } = useAuthStore()
 
   const {
     control,
@@ -58,7 +60,9 @@ export default function SignIn() {
     Keyboard.dismiss()
     setIsLoading(true)
 
-    login(email, password)
+    await login(email, password)
+    router.push('/demands')
+    setIsLoading(false)
   }
 
   const handleOnSubmitEditing = (ref: RefObject<TextInput>) => {

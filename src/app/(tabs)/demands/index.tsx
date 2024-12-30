@@ -14,8 +14,11 @@ import { colors } from '@/styles/colors'
 import { BellDot, Filter, Search } from 'lucide-react-native'
 import { Link } from 'expo-router'
 import { Demand } from '@/components/Demand'
+import { useAuthStore } from '@/stores/authStore'
 
 export default function Demands() {
+  const { user } = useAuthStore()
+
   return (
     <SafeAreaView className="flex-1">
       <StatusBar
@@ -38,7 +41,7 @@ export default function Demands() {
                 Bem-vindo!
               </Text>
               <Text className="text-sm text-white font-semibold tracking-wide">
-                John Doe
+                {user?.username}
               </Text>
             </View>
           </View>

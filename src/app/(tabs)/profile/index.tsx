@@ -43,10 +43,10 @@ export default function Profile() {
             </Avatar>
             <View className="justify-center items-center">
               <Text className="text-sm text-green-600 font-semibold tracking-wide">
-                Osvaldo Cariege
+                {user?.username}
               </Text>
               <Text className="text-sm text-green-600 font-regular">
-                {user || 'email address'}
+                {user?.email || ''}
               </Text>
             </View>
           </View>
@@ -61,7 +61,7 @@ export default function Profile() {
               <User size={16} color={colors.zinc[500]} />
               <Text className="text-sm text-zinc-500">Cargo:</Text>
               <Text className="text-sm text-zinc-500 font-medium">
-                {isAdmin ? 'Responsável' : 'Operador'}
+                {user?.designation ? user?.designation : 'Operador'}
               </Text>
             </View>
           </View>
@@ -86,7 +86,10 @@ export default function Profile() {
               </Pressable>
             </View>
           </View>
-          <Pressable onPress={handleLogout} className='mt-20 bg-zinc-800 text-zinc-100 flex-row gap-2 h-12 rounded-md justify-center items-center'>
+          <Pressable
+            onPress={handleLogout}
+            className="mt-20 bg-zinc-800 text-zinc-100 flex-row gap-2 h-12 rounded-md justify-center items-center"
+          >
             <LogOut size={16} color={colors.zinc[100]} />
             <Text className="text-white">Terminar sessão</Text>
           </Pressable>

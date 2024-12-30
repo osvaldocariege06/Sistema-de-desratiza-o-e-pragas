@@ -139,7 +139,6 @@ export default function CreateDemand() {
     }
   }
 
-
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView style={{ flex: 1 }}>

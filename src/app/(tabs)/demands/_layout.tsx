@@ -34,7 +34,7 @@ export default function Layout() {
         }}
       />
       <Stack.Screen
-        name="details/[id]"
+        name="details"
         options={{
           title: '',
         }}
