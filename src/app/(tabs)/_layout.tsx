@@ -40,15 +40,15 @@ export default function TabLayout() {
           title: 'Demandas',
           headerShown: false,
           tabBarIconStyle: { marginTop: -10 },
+          tabBarIcon: ({ color }) => (
+            <Home size={28} color={color} style={{ marginTop: 20 }} />
+          ),
           tabBarLabel: ({ focused }) => (
             <Text
-              className={`text-xs mb-2  ${focused ? 'text-green-600' : 'text-zinc-500'}`}
+              className={`text-xs mt-4  ${focused ? 'text-green-600' : 'text-zinc-500'}`}
             >
               Demandas
             </Text>
-          ),
-          tabBarIcon: ({ color }) => (
-            <Home size={28} color={color} style={{ marginTop: 20 }} />
           ),
         }}
       />
@@ -61,7 +61,7 @@ export default function TabLayout() {
           tabBarIconStyle: { marginTop: 14 },
           tabBarLabel: ({ focused }) => (
             <Text
-              className={`text-xs mb-2 mt-2  ${focused ? 'text-green-600' : 'text-zinc-500'}`}
+              className={`text-xs mt-4  ${focused ? 'text-green-600' : 'text-zinc-500'}`}
             >
               Criar
             </Text>
@@ -91,13 +91,13 @@ export default function TabLayout() {
           tabBarIconStyle: { marginTop: -10 },
           tabBarLabel: ({ focused }) => (
             <Text
-              className={`text-xs mb-2  ${focused ? 'text-green-600' : 'text-zinc-500'}`}
+              className={`text-xs mt-4  ${focused ? 'text-green-600' : 'text-zinc-500'}`}
             >
               Perfil
             </Text>
           ),
           tabBarIcon: ({ color }) => (
-            <User size={28} color={color} style={{ marginTop: 20 }} />
+            <User size={24} color={color} style={{ marginTop: 20 }} />
           ),
         }}
       />
