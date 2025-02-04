@@ -39,13 +39,13 @@ export default function FilterDemands() {
     'Juliana Almeida',
   ])
 
-  const data = useMemo(
-    () =>
-      Array(10)
-        .fill(0)
-        .map((_, index) => `index-${index}`),
-    []
-  )
+  // const data = useMemo(
+  //   () =>
+  //     Array(10)
+  //       .fill(0)
+  //       .map((_, index) => `index-${index}`),
+  //   []
+  // )
 
   // ref
   const bottomSheetRef = useRef<BottomSheet>(null)
@@ -158,7 +158,7 @@ export default function FilterDemands() {
 
         {/* DEMANDS LIST */}
         <View className="flex-col gap-4 p-4">
-          {data.map(item => (
+          {data.map((item, key) => (
             <Demand key={item} />
           ))}
         </View>

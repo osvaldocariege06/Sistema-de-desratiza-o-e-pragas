@@ -50,6 +50,10 @@ export const useAuthStore = create<AuthState>((set) => ({
       });
     } catch (error) {
       console.error("Erro ao fazer login:", error);
+      set({
+        user: null,
+        isAuthenticated: false,
+      });
       throw error;
     }
   },

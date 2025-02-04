@@ -1,4 +1,4 @@
-import { StatusBar, Text, View } from 'react-native'
+import { StatusBar } from 'react-native'
 import { Slot, Redirect } from 'expo-router'
 import '../../global.css'
 import '@/utils/dayjs-config'

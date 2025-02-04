@@ -22,7 +22,7 @@ export function DemandsSearchAndFilters({
   filterHeight,
 }: DemandsSearchAndFiltersProps) {
   return (
-    <View className="px-4 gap-4">
+    <View className="px-4 gap-4 mb-6">
       <Link href={'/(tabs)/demands/filter-demands'} asChild>
         <TouchableOpacity className="flex-row justify-end gap-x-2 items-center px-4 py-2 rounded-2xl">
           <Text className="flex-row gap-2 text-sm items-center text-zinc-500 text-right">
@@ -60,4 +60,4 @@ export function DemandsSearchAndFilters({
       )}
     </View>
   )
-} 
+}

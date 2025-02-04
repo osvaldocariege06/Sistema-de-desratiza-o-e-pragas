@@ -34,12 +34,12 @@ export default function Profile() {
         <View className="flex-col justify-center items-center px-4 mt-8">
           <View className="flex-col items-center justify-center gap-4">
             <Avatar className="bg-orange-300 h-24 w-24 rounded-full justify-center items-center">
-              <AvatarImage src={'/'} />
-              <AvatarFallback>
+              <AvatarImage src={'https://github.com/osvaldocariege06.png'} />
+              {/*<AvatarFallback>
                 <Text className="text-sm text-white">
-                  {getIniciais('Jane Gutierrez')}
+                  {getIniciais(user?.designation || '')}
                 </Text>
-              </AvatarFallback>
+              </AvatarFallback>*/}
             </Avatar>
             <View className="justify-center items-center">
               <Text className="text-sm text-green-600 font-semibold tracking-wide">

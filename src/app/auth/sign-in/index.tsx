@@ -4,10 +4,9 @@ import {
   ScrollView,
   type TextInput,
   Keyboard,
-  Alert,
   TouchableOpacity,
 } from 'react-native'
-import React, { type RefObject, useEffect, useRef, useState } from 'react'
+import React, { type RefObject, useRef, useState } from 'react'
 import { Link, router } from 'expo-router'
 
 import { useForm, Controller } from 'react-hook-form'
@@ -18,9 +17,7 @@ import { Input } from '@/components/Input'
 import { Switch } from '@/components/Switch'
 import { Button } from '@/components/Button'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import { api } from '@/lib/axios'
 import { useAuthStore } from '@/stores/authStore'
-import AsyncStorage from '@react-native-async-storage/async-storage'
 
 type LoginRequest = {
   email: string

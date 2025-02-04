@@ -21,7 +21,7 @@ export function Avatar({ src, fallback, marginLeft, className }: AvatarProps) {
       style={{ marginLeft: marginLeft }}
       className={cn('w-9 h-9 border border-green-800', className)}
     >
-      <AvatarImage src={"https://avatars.githubusercontent.com/u/96788655?v=4"} />
+      <AvatarImage src={src} />
       <AvatarFallback>
         <Text className="text-xs text-white">{getIniciais(fallback)}</Text>
       </AvatarFallback>

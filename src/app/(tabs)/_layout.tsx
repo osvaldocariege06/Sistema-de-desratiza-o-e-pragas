@@ -17,7 +17,6 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: colors.green[600],
-
         tabBarStyle: {
           height:
             pathname !== '/demands' &&

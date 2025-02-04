@@ -7,6 +7,13 @@ export interface DemandsFilterProps {
   selectedFilter: string
   onFilterSelect: (filterId: string) => void
 } 
+
+interface TeamMember {
+  name: string
+  backgroundColor: string
+  avatarUrl?: string
+}
+
 export interface DemandProps {
   id: string
   customerName: string
@@ -15,9 +22,5 @@ export interface DemandProps {
   startDate: string
   endDate: string
   status: 'pending' | 'in_progress' | 'completed' | 'cancelled'
-  team: {
-    name: string
-    avatarUrl?: string
-    backgroundColor: string
-  }[]
+  team: TeamMember[]
 }
