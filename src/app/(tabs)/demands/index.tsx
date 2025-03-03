@@ -7,8 +7,9 @@ import {
   KeyboardAvoidingView,
   Platform,
   StyleSheet,
+  ActivityIndicator,
 } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Demand } from '@/components/Demand'
 import { useAuthStore } from '@/stores/authStore'
 import { DemandsHeader } from '@/components/DemandsHeader'
@@ -18,15 +19,38 @@ import { useDemandsStore } from '@/stores/demandsStore'
 
 export default function Demands() {
   const {
+    demands,
     filterHeight,
     filteredDemands,
     isKeyboardVisible,
+    isLoading,
+    error,
     searchQuery,
     selectedFilter,
     setSearchQuery,
     setSelectedFilter,
+    getAllDemands,
   } = useDemands()
   const { user } = useAuthStore()
+
+  useEffect(() => {
+    getAllDemands()
+  }, [getAllDemands])
+
+  if (isLoading)
+    return (
+      <View className="flex-1 justify-center items-center">
+        <ActivityIndicator size="large" color="#5E8D48" />
+        <Text>Carregando...</Text>
+      </View>
+    )
+  if (error)
+    return (
+      <View className="flex-1 justify-center items-center">
+        <ActivityIndicator size="large" color="#be1919" />
+        <Text>Erro: {error}</Text>
+      </View>
+    )
 
   const renderHeader = () => (
     <DemandsSearchAndFilters
@@ -60,7 +84,7 @@ export default function Demands() {
           keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
         >
           <FlatList
-            data={filteredDemands}
+            data={demands.data}
             keyExtractor={item => item.id}
             renderItem={({ item: demand }) => <Demand {...demand} />}
             ListHeaderComponent={renderHeader}

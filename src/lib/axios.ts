@@ -3,11 +3,12 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const api = axios.create({
   //baseURL: process.env.EXPO_PUBLIC_API_AUTH_URL,
-  baseURL: "http://38.242.144.83:8282/api",
+  baseURL: "http://38.242.144.83:8283/api",
+  // baseURL: "http://38.242.144.83:8282/api",
   timeout: 10000, // 10 segundos
   headers: {
-    'Content-Type': 'application/json',
-    Accept: 'application/json',
+    "Content-Type": "application/json",
+    Accept: "application/json",
   },
 });
 
@@ -15,12 +16,12 @@ export const api = axios.create({
 api.interceptors.request.use(
   async (config) => {
     try {
-      const token = await AsyncStorage.getItem('authToken');
-      
+      const token = await AsyncStorage.getItem("authToken");
+
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }
-      
+
       return config;
     } catch (error) {
       return Promise.reject(error);
@@ -45,22 +46,22 @@ api.interceptors.response.use(
 
       try {
         // Tentar refresh do token
-        const refreshToken = await AsyncStorage.getItem('refreshToken');
-        const response = await api.post('/auth/refresh', {
+        const refreshToken = await AsyncStorage.getItem("refreshToken");
+        const response = await api.post("/auth/refresh", {
           refreshToken,
         });
 
         const { token } = response.data;
 
         // Salvar novo token
-        await AsyncStorage.setItem('authToken', token);
+        await AsyncStorage.setItem("authToken", token);
 
         // Atualizar header e refazer a requisição
         originalRequest.headers.Authorization = `Bearer ${token}`;
         return api(originalRequest);
       } catch (refreshError) {
         // Se falhar o refresh, fazer logout
-        await AsyncStorage.multiRemove(['authToken', 'refreshToken']);
+        await AsyncStorage.multiRemove(["authToken", "refreshToken"]);
         // Redirecionar para login (você precisa implementar isso)
         return Promise.reject(refreshError);
       }
@@ -69,27 +70,27 @@ api.interceptors.response.use(
     // Tratamento de erros de rede
     if (!error.response) {
       return Promise.reject({
-        message: 'Erro de conexão. Verifique sua internet.',
-        status: 'network_error',
+        message: "Erro de conexão. Verifique sua internet.",
+        status: "network_error",
       });
     }
 
     // Tratamento de erros específicos
     switch (error.response.status) {
       case 400:
-        error.message = 'Requisição inválida';
+        error.message = "Requisição inválida";
         break;
       case 403:
-        error.message = 'Acesso negado';
+        error.message = "Acesso negado";
         break;
       case 404:
-        error.message = 'Recurso não encontrado';
+        error.message = "Recurso não encontrado";
         break;
       case 500:
-        error.message = 'Erro interno do servidor';
+        error.message = "Erro interno do servidor";
         break;
       default:
-        error.message = 'Ocorreu um erro inesperado';
+        error.message = "Ocorreu um erro inesperado";
     }
 
     return Promise.reject(error);
@@ -107,8 +108,10 @@ export interface ApiError {
 // Helper para verificar se é um erro da API
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export function isApiError(error: any): error is ApiError {
-  return error && typeof error.message === 'string' && (
-    typeof error.status === 'number' || typeof error.status === 'string'
+  return (
+    error &&
+    typeof error.message === "string" &&
+    (typeof error.status === "number" || typeof error.status === "string")
   );
 }
 
@@ -120,5 +123,5 @@ export function getErrorMessage(error: unknown): string {
   if (error instanceof Error) {
     return error.message;
   }
-  return 'Ocorreu um erro inesperado';
+  return "Ocorreu um erro inesperado";
 }

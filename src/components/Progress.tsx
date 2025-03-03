@@ -1,7 +1,7 @@
-import { useEffect, useRef } from 'react';
-import { Animated, View as RnView, type View } from 'react-native';
+import { useEffect, useRef } from 'react'
+import { Animated, View as RnView, type View } from 'react-native'
 
-import { cn } from '../lib/utils';
+import { cn } from '../lib/utils'
 
 function Progress({
   className,
@@ -9,15 +9,15 @@ function Progress({
 }: { className?: string; value: number } & React.ComponentPropsWithoutRef<
   typeof View
 >) {
-  const widthAnim = useRef(new Animated.Value(0)).current;
+  const widthAnim = useRef(new Animated.Value(10)).current
 
   useEffect(() => {
     Animated.timing(widthAnim, {
       toValue: props.value,
       duration: 1000,
       useNativeDriver: false,
-    }).start();
-  }, [widthAnim, props.value]);
+    }).start()
+  }, [widthAnim, props.value])
 
   return (
     <RnView
@@ -36,7 +36,7 @@ function Progress({
         }}
       />
     </RnView>
-  );
+  )
 }
 
-export { Progress };
+export { Progress }

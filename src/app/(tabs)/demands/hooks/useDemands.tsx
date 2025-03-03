@@ -1,8 +1,6 @@
-import { useAuthStore } from '@/stores/authStore'
 import { useDemandsStore } from '@/stores/demandsStore'
-import type { DemandProps } from '@/types/demands'
 import React from 'react'
-import { Animated, Keyboard } from 'react-native'
+import { Animated } from 'react-native'
 
 export function useDemands() {
   const {
@@ -26,21 +24,22 @@ export function useDemands() {
   const filteredDemands = React.useMemo(() => {
     if (!demands) return []
 
-    return demands.filter(demand => {
-      const matchesSearch =
-        searchQuery === '' ||
-        demand.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        demand.customerName.toLowerCase().includes(searchQuery.toLowerCase())
-
-      const matchesFilter =
-        selectedFilter === 'todas' ||
-        (selectedFilter === 'pendentes' && demand.status === 'pending') ||
-        (selectedFilter === 'em_andamento' &&
-          demand.status === 'in_progress') ||
-        (selectedFilter === 'concluidas' && demand.status === 'completed')
-
-      return matchesSearch && matchesFilter
-    })
+    // return demands?.data.filter(demand => {
+    //   const matchesSearch =
+    //     searchQuery === '' ||
+    //     demand?.description
+    //       ?.toLowerCase()
+    //       .includes(searchQuery.toLowerCase()) ||
+    //     demand.customer.toLowerCase().includes(searchQuery.toLowerCase())
+    //   const matchesFilter =
+    //     selectedFilter === 'todas' ||
+    //     ((selectedFilter === 'pendentes' && demand?.status === 1) ??
+    //       'pending') ||
+    //     (selectedFilter === 'em_andamento' &&
+    //       demand?.status === 'in_progress') ||
+    //     (selectedFilter === 'concluidas' && demand?.status === 'completed')
+    //   return matchesSearch && matchesFilter
+    // })
   }, [searchQuery, selectedFilter, demands])
 
   return {
