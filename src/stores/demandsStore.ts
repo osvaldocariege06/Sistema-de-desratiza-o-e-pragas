@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { api } from "@/lib/axios";
 import type { DemandsState } from "@/interfaces/demands";
 import { mockDemands } from "@/mocks/demands";
+import { apiDemands } from "@/lib/axios-demands";
 
 export const useDemandsStore = create<DemandsState>((set, get) => ({
   demands: [],
@@ -53,9 +54,11 @@ export const useDemandsStore = create<DemandsState>((set, get) => ({
   getDemandById: async (id) => {
     try {
       set({ isLoading: true, error: null });
-      const response = await api.get(`/PestRoteiro/get-by-id/${id}`);
-      set({ isLoading: false });
-      return response.data;
+      const response = await apiDemands.get("/PestWorkOrder/get-by-id", {
+        params: { id },
+      });
+      set({ isLoading: false, demands: response.data });
+      return response.data?.data;
     } catch (error) {
       set({
         error:
@@ -70,8 +73,7 @@ export const useDemandsStore = create<DemandsState>((set, get) => ({
   getAllDemands: async () => {
     try {
       set({ isLoading: true, error: null });
-      const response = await api.get("/PestWorkOrder/get-list");
-
+      const response = await apiDemands.get("/PestWorkOrder/get-list");
       set({
         demands: response.data,
         isLoading: false,

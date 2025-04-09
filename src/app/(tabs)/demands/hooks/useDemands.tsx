@@ -24,7 +24,7 @@ export function useDemands() {
   const filteredDemands = React.useMemo(() => {
     if (!demands) return []
 
-    // return demands?.data.filter(demand => {
+    // return demands?.data?.filter(demand => {
     //   const matchesSearch =
     //     searchQuery === '' ||
     //     demand?.description
@@ -43,7 +43,7 @@ export function useDemands() {
   }, [searchQuery, selectedFilter, demands])
 
   return {
-    demands,
+    demands: demands,
     filteredDemands,
     selectedFilter,
     setSelectedFilter,

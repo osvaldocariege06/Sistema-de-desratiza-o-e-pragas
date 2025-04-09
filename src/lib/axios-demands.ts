@@ -1,8 +1,8 @@
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export const api = axios.create({
-  baseURL: process.env.EXPO_PUBLIC_API_AUTH_URL,
+export const apiDemands = axios.create({
+  baseURL: process.env.EXPO_PUBLIC_API_URL,
   timeout: 10000, // 10 segundos
   headers: {
     "Content-Type": "application/json",
@@ -11,7 +11,7 @@ export const api = axios.create({
 });
 
 // Request interceptor
-api.interceptors.request.use(
+apiDemands.interceptors.request.use(
   async (config) => {
     try {
       const token = await AsyncStorage.getItem("authToken");
@@ -31,7 +31,7 @@ api.interceptors.request.use(
 );
 
 // Response interceptor
-api.interceptors.response.use(
+apiDemands.interceptors.response.use(
   (response) => {
     return response;
   },
@@ -45,7 +45,7 @@ api.interceptors.response.use(
       try {
         // Tentar refresh do token
         const refreshToken = await AsyncStorage.getItem("refreshToken");
-        const response = await api.post("/auth/refresh", {
+        const response = await apiDemands.post("/auth/refresh", {
           refreshToken,
         });
 
@@ -56,7 +56,7 @@ api.interceptors.response.use(
 
         // Atualizar header e refazer a requisição
         originalRequest.headers.Authorization = `Bearer ${token}`;
-        return api(originalRequest);
+        return apiDemands(originalRequest);
       } catch (refreshError) {
         // Se falhar o refresh, fazer logout
         await AsyncStorage.multiRemove(["authToken", "refreshToken"]);

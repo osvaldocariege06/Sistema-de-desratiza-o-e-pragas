@@ -84,8 +84,8 @@ export default function Demands() {
           keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
         >
           <FlatList
-            data={demands.data}
-            keyExtractor={item => item.id}
+            data={demands?.data}
+            keyExtractor={item => item.id?.toString()}
             renderItem={({ item: demand }) => <Demand {...demand} />}
             ListHeaderComponent={renderHeader}
             ListEmptyComponent={() => (
