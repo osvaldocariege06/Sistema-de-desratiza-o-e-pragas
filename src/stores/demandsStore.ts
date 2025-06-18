@@ -1,0 +1,90 @@
+import { create } from "zustand";
+import { api } from "@/lib/axios";
+import type { DemandsState } from "@/interfaces/demands";
+import { mockDemands } from "@/mocks/demands";
+import { apiDemands } from "@/lib/axios-demands";
+
+export const useDemandsStore = create<DemandsState>((set, get) => ({
+  demands: [],
+  isLoading: false,
+  error: null,
+
+  // Create new demand
+  createDemand: async (newDemand) => {
+    try {
+      set({ isLoading: true, error: null });
+      const response = await api.post("/PestRoteiro/create", newDemand);
+
+      set((state) => ({
+        demands: [...state.demands, response.data.data],
+        isLoading: false,
+      }));
+    } catch (error) {
+      set({
+        error: error instanceof Error ? error.message : "Erro ao criar demanda",
+        isLoading: false,
+      });
+      throw error;
+    }
+  },
+
+  // Update existing demand
+  // updateDemand: async (id: string, updatedDemand) => {
+  //   try {
+  //     set({ isLoading: true, error: null });
+  //     const response = await api.put("/PestRoteiro/edit", updatedDemand);
+
+  //     set((state) => ({
+  //       demands: state.demands.map((demand) =>
+  //         demand.data === id ? response.data : demand
+  //       ),
+  //       isLoading: false,
+  //     }));
+  //   } catch (error) {
+  //     set({
+  //       error:
+  //         error instanceof Error ? error.message : "Erro ao atualizar demanda",
+  //       isLoading: false,
+  //     });
+  //     throw error;
+  //   }
+  // },
+
+  // Get demand by ID
+  getDemandById: async (id) => {
+    try {
+      set({ isLoading: true, error: null });
+      const response = await apiDemands.get("/PestWorkOrder/get-by-id", {
+        params: { id },
+      });
+      set({ isLoading: false, demands: response.data });
+      return response.data?.data;
+    } catch (error) {
+      set({
+        error:
+          error instanceof Error ? error.message : "Erro ao buscar demanda",
+        isLoading: false,
+      });
+      throw error;
+    }
+  },
+
+  // Get all demands
+  getAllDemands: async () => {
+    try {
+      set({ isLoading: true, error: null });
+      const response = await apiDemands.get("/PestWorkOrder/get-list");
+      set({
+        demands: response.data,
+        isLoading: false,
+      });
+    } catch (error) {
+      set({
+        error:
+          error instanceof Error ? error.message : "Erro ao listar demandas",
+        isLoading: false,
+      });
+      throw error;
+    }
+  },
+}));

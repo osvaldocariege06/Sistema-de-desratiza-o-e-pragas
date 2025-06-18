@@ -17,7 +17,7 @@ export default function HomeView() {
     <>
       <Header user={user} />
       <FlatList
-        data={[1, 2, 3]}
+        data={[1, 2]}
         ItemSeparatorComponent={() => <View className='h-4' />}
         className='px-4'
         ListHeaderComponent={() => (

@@ -157,11 +157,11 @@ export default function FilterDemands() {
         </View>
 
         {/* DEMANDS LIST */}
-        <View className="flex-col gap-4 p-4">
-          {data.map(item => (
+        {/* <View className="flex-col gap-4 p-4">
+          {data?.map((item, key) => (
             <Demand key={item} />
           ))}
-        </View>
+        </View> */}
       </ScrollView>
       <Calendar
         selected={initialDate}

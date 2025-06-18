@@ -1,10 +1,11 @@
-import { StatusBar, Text, View } from 'react-native'
+import { StatusBar } from 'react-native'
 import { Slot, Redirect } from 'expo-router'
 import '../../global.css'
 import '@/utils/dayjs-config'
 
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet'
+import { QueryClientProvider } from '@tanstack/react-query'
 
 import {
   useFonts,
