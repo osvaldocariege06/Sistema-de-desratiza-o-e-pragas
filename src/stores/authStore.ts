@@ -1,15 +1,9 @@
 import { create } from "zustand";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { api } from "@/lib/axios";
+import { IUser } from "@/types/user";
 
-type IUser = {
-  id: 1;
-  username: "administrador";
-  designation: "Administrador do Sistema";
-  email: "";
-  userProfileId: 1;
-  situacao: "A";
-} | null;
+
 
 interface AuthState {
   user: IUser;
