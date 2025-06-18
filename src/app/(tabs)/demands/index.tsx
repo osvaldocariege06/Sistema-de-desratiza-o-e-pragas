@@ -22,9 +22,9 @@ export default function Demands() {
   return (
     <SafeAreaView className="flex-1">
       <StatusBar
-        backgroundColor={'#086632'}
+        backgroundColor={'red'}
         barStyle={'dark-content'}
-        translucent
+        // translucent
       />
       <ScrollView>
         {/* HEADER */}

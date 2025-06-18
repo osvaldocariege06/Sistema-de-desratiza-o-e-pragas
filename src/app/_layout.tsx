@@ -5,6 +5,7 @@ import '@/utils/dayjs-config'
 
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet'
+import Toast from 'react-native-toast-message';
 
 import {
   useFonts,
@@ -46,6 +47,7 @@ export default function Layout() {
           translucent
         />
         <Slot />
+        <Toast />
         <Redirect
           href={isAuthenticated ? '/(tabs)/demands' : '/auth/sign-in'}
         />

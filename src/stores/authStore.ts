@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { api } from "@/lib/axios";
+import Toast from "react-native-toast-message";
 
 type IUser = {
   id: 1;
@@ -41,15 +42,16 @@ export const useAuthStore = create<AuthState>((set) => ({
       }: { token: string; authenticatedUser: IUser } = response.data.data;
 
       // Salva o token no AsyncStorage
-      await AsyncStorage.setItem("authToken", token);
+      await AsyncStorage.setItem("authToken", token ?? "");
 
       set({
         user: authenticatedUser,
         token,
         isAuthenticated: true,
       });
+      Toast.show({ type: "success", position: "bottom", text1: "Login realizado com sucesso", text2: "Seja bem-vindo!" })
     } catch (error) {
-      console.error("Erro ao fazer login:", error);
+      Toast.show({ type: "error", position: "bottom", text1: "Falha ao fazer login", text2: "Algo deu errado, tente novamente!" })
       throw error;
     }
   },

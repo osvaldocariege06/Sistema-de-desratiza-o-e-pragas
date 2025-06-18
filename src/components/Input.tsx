@@ -41,7 +41,7 @@ function Field({ innerRef, ...rest }: FieldProps) {
   return (
     <TextInput
       ref={innerRef}
-      className="border-0 bg-zinc-200 h-14 rounded-md px-4 text-sm"
+      className="border-0 bg-zinc-200 h-16 rounded-md px-4 text-sm"
       placeholderTextColor={colors.zinc[400]}
       {...rest}
     />

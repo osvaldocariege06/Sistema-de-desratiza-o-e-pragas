@@ -116,6 +116,9 @@ importers:
       react-native-svg:
         specifier: 15.11.2
         version: 15.11.2(react-native@0.79.3(@babel/core@7.27.4)(@types/react@18.3.23)(react@19.0.0))(react@19.0.0)
+      react-native-toast-message:
+        specifier: ^2.3.0
+        version: 2.3.0(react-native@0.79.3(@babel/core@7.27.4)(@types/react@18.3.23)(react@19.0.0))(react@19.0.0)
       react-native-web:
         specifier: ^0.20.0
         version: 0.20.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -3696,6 +3699,12 @@ packages:
 
   react-native-swipe-gestures@1.0.5:
     resolution: {integrity: sha512-Ns7Bn9H/Tyw278+5SQx9oAblDZ7JixyzeOczcBK8dipQk2pD7Djkcfnf1nB/8RErAmMLL9iXgW0QHqiII8AhKw==}
+
+  react-native-toast-message@2.3.0:
+    resolution: {integrity: sha512-d7LldTK1ei1Bl7RFhoOYw8hVQ4oKPQHORYI//xR9Pyz3HxSlFlvQbueE5X3KLoemRRgBrOUg3zY6DxXnxrVLRg==}
+    peerDependencies:
+      react: '*'
+      react-native: '*'
 
   react-native-web@0.20.0:
     resolution: {integrity: sha512-OOSgrw+aON6R3hRosCau/xVxdLzbjEcsLysYedka0ZON4ZZe6n9xgeN9ZkoejhARM36oTlUgHIQqxGutEJ9Wxg==}
@@ -8857,6 +8866,11 @@ snapshots:
       warn-once: 0.1.1
 
   react-native-swipe-gestures@1.0.5: {}
+
+  react-native-toast-message@2.3.0(react-native@0.79.3(@babel/core@7.27.4)(@types/react@18.3.23)(react@19.0.0))(react@19.0.0):
+    dependencies:
+      react: 19.0.0
+      react-native: 0.79.3(@babel/core@7.27.4)(@types/react@18.3.23)(react@19.0.0)
 
   react-native-web@0.20.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:

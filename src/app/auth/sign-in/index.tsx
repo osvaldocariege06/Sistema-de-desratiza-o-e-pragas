@@ -23,14 +23,14 @@ import { useAuthStore } from '@/stores/authStore'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 type LoginRequest = {
-  email: string
+  username: string
   password: string
 }
 
 const schema = zod
   .object({
     // email: zod.string().email('Insira um e-mail válido!'),
-    email: zod.string(),
+    username: zod.string().nonempty("Preencha o nome de usuário").min(4, "Nome de usuário deve ter no mínimo 4 caracteres"),
     password: zod.string().min(5, 'Senha deve ter no mínimo 6 caracteres'),
   })
   .required()
@@ -51,16 +51,16 @@ export default function SignIn() {
   } = useForm<LoginRequest>({
     resolver: zodResolver(schema),
     defaultValues: {
-      email: '',
+      username: '',
       password: '',
     },
   })
 
-  async function onSubmit({ email, password }: LoginRequest) {
+  async function onSubmit({ username, password }: LoginRequest) {
     Keyboard.dismiss()
     setIsLoading(true)
 
-    await login(email, password)
+    await login(username, password)
     router.push('/demands')
     setIsLoading(false)
   }
@@ -82,7 +82,7 @@ export default function SignIn() {
 
           <View className="flex flex-col gap-4 mt-10">
             <Input>
-              <Input.Label title="E-mail" />
+              <Input.Label title="Nome de usuário" />
               <Controller
                 control={control}
                 rules={{
@@ -90,8 +90,8 @@ export default function SignIn() {
                 }}
                 render={({ field: { onChange, onBlur, value } }) => (
                   <Input.Field
-                    keyboardType="email-address"
-                    placeholder="Digite seu e-mail"
+                    keyboardType="default"
+                    placeholder="Digite seu nome de usuário"
                     autoCapitalize="none"
                     editable={!isLoading}
                     onBlur={onBlur}
@@ -101,11 +101,11 @@ export default function SignIn() {
                     onSubmitEditing={() => handleOnSubmitEditing(passwordRef)}
                   />
                 )}
-                name="email"
+                name="username"
               />
-              {errors.email && (
+              {errors.username && (
                 <Text className="text-xs text-red-800">
-                  {errors.email.message}
+                  {errors.username.message}
                 </Text>
               )}
             </Input>
@@ -132,7 +132,7 @@ export default function SignIn() {
                 )}
                 name="password"
               />
-              {errors.email && (
+              {errors.username && (
                 <Text className="text-xs text-red-800">
                   {errors.password?.message}
                 </Text>
@@ -160,7 +160,7 @@ export default function SignIn() {
 
           <Button
             variant="primary"
-            isLoading={isAuthenticated}
+            // isLoading={isAuthenticated}
             onPress={handleSubmit(onSubmit)}
           >
             <Text className="text-white">Entrar</Text>
