@@ -8,7 +8,7 @@ interface Props {
 
 export default function DemandStatus({ props }: Props) {
   return (
-    <View className="px-4">
+    <View className="py-4">
       <View className="border border-zinc-200 p-3 rounded-2xl">
         <Text className="text-sm text-zinc-500">Status da demanda</Text>
         <View className="flex-row items-center gap-2 mt-4 flex-wrap">

@@ -18,19 +18,17 @@ export function DemandsFilter({ selectedFilter, onFilterSelect }: DemandsFilterP
         {filters.map((filter) => (
           <TouchableOpacity
             key={filter.id}
-            onPress={() => onFilterSelect(filter.id)}
-            className={`rounded-2xl px-4 py-2 active:scale-95 transition-transform ${
-              selectedFilter === filter.id
+            onPress={() => onFilterSelect?.(filter?.id)}
+            className={`rounded-2xl px-4 py-2 active:scale-95 transition-transform ${selectedFilter === filter.id
                 ? 'bg-green-600'
                 : 'border border-zinc-400 bg-transparent'
-            }`}
+              }`}
           >
             <Text
-              className={`text-sm ${
-                selectedFilter === filter.id
+              className={`text-sm ${selectedFilter === filter.id
                   ? 'text-zinc-50'
                   : 'text-zinc-500'
-              }`}
+                }`}
             >
               {filter.label}
             </Text>

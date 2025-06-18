@@ -3,6 +3,7 @@ import {
   ActivityIndicator,
   Pressable,
   Text,
+  TouchableOpacity,
   type TextProps,
   type TouchableOpacityProps,
 } from 'react-native'
@@ -18,9 +19,9 @@ type TitleProps = TextProps & {
 
 function Button({ variant, isLoading, children, ...rest }: ButtonProps) {
   return (
-    <Pressable
+    <TouchableOpacity
       className={clsx(
-        'h-11 rounded-lg flex-row justify-center items-center gap-4 disabled:bg-green-950',
+        'h-14 rounded-lg flex-row justify-center items-center gap-4 disabled:bg-green-950',
         {
           'bg-green-600': variant === 'primary',
           'bg-zinc-800': variant === 'secondary',
@@ -31,7 +32,7 @@ function Button({ variant, isLoading, children, ...rest }: ButtonProps) {
       {...rest}
     >
       {isLoading ? <ActivityIndicator className={'text-white'} /> : children}
-    </Pressable>
+    </TouchableOpacity>
   )
 }
 

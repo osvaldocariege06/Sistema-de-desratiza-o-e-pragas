@@ -4,8 +4,8 @@ export interface Filter {
 }
 
 export interface DemandsFilterProps {
-  selectedFilter: string;
-  onFilterSelect: (filterId: string) => void;
+  selectedFilter?: string;
+  onFilterSelect?: (filterId: string) => void;
 }
 
 interface TeamMember {
@@ -17,26 +17,26 @@ interface TeamMember {
 }
 
 export interface DemandProps {
-  arriveToCustomerDate: string;
-  closedDate: string;
-  confirmedTeam: string;
-  createdBy: string;
-  createdDate: string;
-  customer: string;
-  customerAddressDesignation: string;
-  customerAddressDetails: string;
-  depatureOfficeDate: string;
-  description: string;
-  expectedDate: string;
-  id: number;
-  priority: "NORMAL" | "ALTA" | "BAIXA"; // Supondo que existam outros níveis de prioridade
-  reference: string;
-  requestDate: string;
-  status: number;
-  technicianId: number;
-  ticketId: number;
-  workBeginDate: string;
-  workEndDate: string;
+  arriveToCustomerDate?: string;
+  closedDate?: string;
+  confirmedTeam?: string;
+  createdBy?: string;
+  createdDate?: string;
+  customer?: string;
+  customerAddressDesignation?: string;
+  customerAddressDetails?: string;
+  depatureOfficeDate?: string;
+  description?: string;
+  expectedDate?: string;
+  id?: number;
+  priority?: "NORMAL" | "ALTA" | "BAIXA"; // Supondo que existam outros níveis de prioridade
+  reference?: string;
+  requestDate?: string;
+  status?: number;
+  technicianId?: number;
+  ticketId?: number;
+  workBeginDate?: string;
+  workEndDate?: string;
 }
 
 // export interface DemandProps {

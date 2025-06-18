@@ -45,7 +45,7 @@ export default function DemandDetails({ props }: Props) {
   )
 
   return (
-    <View className="gap-3 p-4">
+    <View className="gap-3 py-4">
       <View className="border border-zinc-200 p-3 rounded-2xl">
         <View className="flex-row items-center gap-2">
           <UserIcon size={16} color={colors.zinc[500]} />

@@ -6,8 +6,8 @@ import { Car, InfoIcon, PencilLine, Plus, User } from 'lucide-react-native'
 import { colors } from '@/styles/colors'
 import { TextInput } from 'react-native'
 import { Keyboard } from 'react-native'
-import { Button } from '../Button'
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet'
+import { Button } from '@/components/Button'
 
 interface Cars {
   motorista: string
@@ -191,7 +191,7 @@ export function EditDemand({ handleOpenAddCars }: EditDemandProps) {
         </View>
         <Button
           variant="primary"
-          // onPress={handleSubmit(onSubmit)}
+        // onPress={handleSubmit(onSubmit)}
         >
           <Button.Title className="text-white">Gravar/Confirmar</Button.Title>
         </Button>

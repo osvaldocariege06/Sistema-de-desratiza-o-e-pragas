@@ -48,11 +48,11 @@ export default function DemandAnexos({ props }: Props) {
         setImageDatas(imageManipuled.uri)
         setImages([...images, imageManipuled.uri])
       }
-    } catch (error) {}
+    } catch (error) { }
   }
   return (
-    <View className="pl-4 mb-8">
-      <View className="p-3 rounded-2xl">
+    <View className="py-4 gap-y-5">
+      <View className="rounded-2xl gap-y-3">
         <Text className="text-sm text-zinc-500">Imagens</Text>
         <Pressable
           onPress={handleSelectedImage}
@@ -87,9 +87,9 @@ export default function DemandAnexos({ props }: Props) {
         </View>
       </View>
 
-      <View className="p-3 rounded-2xl">
+      <View className="rounded-2xl gap-y-3">
         <Text className="text-sm text-zinc-500">Documentos</Text>
-        <View className="flex-row items-center gap-2 mt-4">
+        <View className="flex-row items-center gap-2">
           <FlatList
             data={[1, 2, 3, 4]}
             horizontal={true}

@@ -7,10 +7,14 @@ import { Avatar } from './Avatar'
 import type { DemandProps } from '@/types/demands'
 import { formateDate } from '@/utils/format-date'
 
-export function Demand(props: DemandProps) {
+type Props = {
+  demand: DemandProps
+}
+
+export function Demand({ demand }: Props) {
   return (
     <Link
-      href={`/(tabs)/demands/details/${props.id}`}
+      href={`/(tabs)/demands/details/${demand?.id}`}
       className="flex-1"
       asChild
     >
@@ -18,16 +22,16 @@ export function Demand(props: DemandProps) {
         <View className="flex-row items-start justify-between">
           <View>
             <Text className="text-xs text-green-600">
-              {props?.customerAddressDesignation}
-              {props?.customerAddressDetails && <Text>,</Text>}{' '}
-              {props?.customerAddressDetails ?? ''}
+              {demand?.customerAddressDesignation}
+              {demand?.customerAddressDetails && <Text>,</Text>}{' '}
+              {demand?.customerAddressDetails ?? ''}
             </Text>
             <Text className="text-base text-zinc-600 font-medium tracking-wide leading-relaxed">
-              {props.description}
+              {demand?.description}
             </Text>
           </View>
           <Pressable className="border border-zinc-300 w-6 h-6 rounded-full justify-center items-center active:scale-90 transition-transform">
-            <Ellipsis size={14} color={colors.zinc[500]} />
+            <Ellipsis size={14} color={colors?.zinc[500]} />
           </Pressable>
         </View>
 
@@ -35,11 +39,11 @@ export function Demand(props: DemandProps) {
           <Text className="text-sm text-zinc-400">Progresso</Text>
           <View className="flex-row gap-2 items-center">
             <Progress
-              value={props?.status === 0 ? 0 : props?.status === 1 ? 50 : 100}
+              value={demand?.status === 0 ? 0 : demand?.status === 1 ? 50 : 100}
               className=" bg-green-600 h-2"
             />
             <Text className="text-sm text-zinc-400">
-              {props?.status === 0 ? 0 : props?.status === 1 ? 50 : 100}%
+              {demand?.status === 0 ? 0 : demand?.status === 1 ? 50 : 100}%
             </Text>
           </View>
         </View>
@@ -47,15 +51,15 @@ export function Demand(props: DemandProps) {
         {/* DATES */}
         <View className="mt-2 flex-row gap-4 items-center">
           <View className="flex-row gap-2 items-center">
-            <Calendar size={18} color={colors.green[600]} />
+            <Calendar size={18} color={colors?.green[600]} />
             <Text className="text-sm text-zinc-500">
-              {formateDate(props?.workBeginDate)}
+              {formateDate(demand?.workBeginDate)}
             </Text>
           </View>
           <View className="flex-row gap-2 items-center">
-            <FlagIcon size={18} color={colors.green[600]} />
+            <FlagIcon size={18} color={colors?.green[600]} />
             <Text className="text-sm text-zinc-500">
-              {formateDate(props.workEndDate)}
+              {formateDate(demand?.workEndDate)}
             </Text>
           </View>
         </View>
@@ -63,7 +67,7 @@ export function Demand(props: DemandProps) {
         {/* TEAMS AND STATUS */}
         <View className="mt-3 flex-row gap-4 items-center justify-between">
           <View className="flex-row">
-            {/* {props.team?.map((member, index) => (
+            {/* {demand?.team?.map((member, index) => (
               <Avatar
                 key={member.name}
                 fallback={member.name}
@@ -76,19 +80,18 @@ export function Demand(props: DemandProps) {
 
           <View
             className={`rounded-2xl px-4 py-1
-            ${
-              props?.status === 0
+            ${demand?.status === 0
                 ? 'bg-yellow-600'
-                : props?.status === 1
+                : demand?.status === 1
                   ? 'bg-orange-600'
                   : 'bg-green-600'
-            }
+              }
             `}
           >
             <Text className="text-sm text-white">
-              {props?.status === 0
+              {demand?.status === 0
                 ? 'Pendente'
-                : props?.status === 1
+                : demand?.status === 1
                   ? 'Andamento'
                   : 'Concluído'}
             </Text>

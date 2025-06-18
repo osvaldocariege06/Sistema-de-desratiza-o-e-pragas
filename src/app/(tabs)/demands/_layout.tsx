@@ -22,14 +22,16 @@ export default function Layout() {
         }}
       />
       <Stack.Screen
-        name="notification/index"
+        name="notification"
         options={{
-          title: '',
+          headerBackTitle: "Voltar",
+          title: 'Notificações',
         }}
       />
       <Stack.Screen
         name="filter-demands/index"
         options={{
+          headerBackTitle: "Voltar",
           title: '',
         }}
       />
