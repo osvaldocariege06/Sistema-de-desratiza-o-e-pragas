@@ -160,7 +160,7 @@ export default function SignIn() {
 
           <Button
             variant="primary"
-            isLoading={isLoading}
+            isLoading={isAuthenticated}
             onPress={handleSubmit(onSubmit)}
           >
             <Text className="text-white">Entrar</Text>
