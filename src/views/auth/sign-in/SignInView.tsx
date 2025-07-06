@@ -70,26 +70,7 @@ export default function SignInView() {
                 </Text>
               )}
             </Input>
-            <Input>
-              <Input.Label title="E-mail" />
-              <Input.Field
-                innerRef={emailRef}
-                keyboardType="email-address"
-                placeholder="Digite seu nome de usuário"
-                autoCapitalize="none"
-                editable={!isSignIn}
-                onChangeText={(value) => setValue("email", value)}
-                value={watch("email")}
-                returnKeyType="next"
-                onSubmitEditing={() => handleOnSubmitEditing(passwordRef)}
-              />
 
-              {errors.email && (
-                <Text className="text-xs text-red-800">
-                  {errors.email.message}
-                </Text>
-              )}
-            </Input>
             <Input>
               <Input.Label title="Senha" />
               <Input.FieldPassword

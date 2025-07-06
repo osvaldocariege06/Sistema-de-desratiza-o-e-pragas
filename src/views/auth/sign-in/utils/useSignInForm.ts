@@ -19,32 +19,38 @@ export function useSignInForm() {
   } = useForm({
     resolver: zodResolver(signInSchema),
     defaultValues: {
-      email: '',
       username: '',
       password: '',
     },
   });
 
-  const onSubmit = handleSubmit(async (data) => {
-    console.log("onsubmit: ", data);
+  const onSubmit = handleSubmit(async data => {
+    console.log('onsubmit: ', data)
 
     try {
       const response = await signIn({
-        email: data?.email,
         username: data?.username,
-        password: data?.password
+        password: data?.password,
       })
 
-      await SecureStorage.set("accessToken", response?.token);
+      await SecureStorage.set('accessToken', response?.token)
 
-      router.replace("/(tabs)/demands");
-      Toast.show({ type: "success", position: "bottom", text1: "Login realizado com sucesso", text2: "Seja bem-vindo!" })
+      router.replace('/(tabs)/demands')
+      Toast.show({
+        type: 'success',
+        position: 'bottom',
+        text1: 'Login realizado com sucesso',
+        text2: 'Seja bem-vindo!',
+      })
     } catch (error) {
-      Toast.show({ type: "error", position: "bottom", text1: "Falha ao fazer login", text2: error as string, })
-      console.log(error);
-
+      Toast.show({
+        type: 'error',
+        position: 'bottom',
+        text1: 'Falha ao fazer login',
+        text2: error as string,
+      })
+      console.log(error)
     }
-
   })
 
 

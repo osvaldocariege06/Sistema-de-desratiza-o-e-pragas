@@ -1,7 +1,7 @@
 import SecureStorage from "@/utils/secureStore";
 import { useMutation } from "@tanstack/react-query";
 import { authApi } from "@/services/authApi";
-import { TSignInRequest, TSignInResponse } from "../types/sign.in.types";
+import type { TSignInRequest, TSignInResponse } from "../types/sign.in.types";
 
 const mutationFn = async ({ ...data }: TSignInRequest) => {
   const accessToken = await SecureStorage.get("accessToken");
