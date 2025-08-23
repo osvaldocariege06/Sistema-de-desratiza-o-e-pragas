@@ -1,7 +1,15 @@
-import { View, Text, Pressable, FlatList, Image, Alert } from 'react-native'
+import {
+  View,
+  Text,
+  Pressable,
+  FlatList,
+  Image,
+  Alert,
+  TouchableOpacity,
+} from 'react-native'
 import React, { useState } from 'react'
 import type { DemandProps } from '@/types/demands'
-import { FileImageIcon } from 'lucide-react-native'
+import { FileImageIcon, X } from 'lucide-react-native'
 import { colors } from '@/styles/colors'
 
 import * as ImagePicker from 'expo-image-picker'
@@ -48,8 +56,28 @@ export default function DemandAnexos({ props }: Props) {
         setImageDatas(imageManipuled.uri)
         setImages([...images, imageManipuled.uri])
       }
-    } catch (error) { }
+    } catch (error) {}
   }
+
+  function handleRemove(image?: string) {
+    if (!image) return
+
+    Alert.alert(
+      'Remover imagem',
+      'Tens certeza que queres remover esta imagem?',
+      [
+        { text: 'Cancelar', style: 'cancel' },
+        {
+          text: 'Remover',
+          style: 'destructive',
+          onPress: () => {
+            setImages(prev => prev.filter(img => img !== image))
+          },
+        },
+      ]
+    )
+  }
+
   return (
     <View className="py-4 gap-y-5">
       <View className="rounded-2xl gap-y-3">
@@ -66,41 +94,39 @@ export default function DemandAnexos({ props }: Props) {
             <FlatList
               data={images}
               horizontal
+              ItemSeparatorComponent={() => <View className="w-4" />}
               renderItem={({ index, item }) => (
-                <View>
+                <View className="gap-x-4">
                   {item && (
-                    <Image
-                      key={index}
-                      source={{ uri: item }}
-                      alt=""
-                      className={`w-[350px] h-[223px] rounded-2xl m bg-green-200 justify-center items-center p-4 ${index !== 0 && 'ml-2'}`}
-                    />
+                    <>
+                      <TouchableOpacity
+                        onPress={() => handleRemove(item)}
+                        className="bg-white/80 rounded-full absolute z-30 right-4 top-4 w-5 h-5 justify-center items-center"
+                      >
+                        <X size={14} color={'black'} />
+                      </TouchableOpacity>
+                      <Image
+                        key={index}
+                        source={{ uri: item }}
+                        alt={item ?? 'Imagem'}
+                        className={
+                          'h-[223px] w-[350px] flex-1 rounded-2xl bg-green-200 justify-center items-center'
+                        }
+                      />
+                    </>
                   )}
                 </View>
               )}
             />
           ) : (
-            <Text className="text-center text-zinc-800 mt-4">
-              Nenhuma imagem adicionada
-            </Text>
+            <View
+              className={
+                'w-full h-[223px] rounded-2xl m bg-zinc-200 justify-center items-center p-4'
+              }
+            >
+              <FileImageIcon size={62} color={colors.green[600]} />
+            </View>
           )}
-        </View>
-      </View>
-
-      <View className="rounded-2xl gap-y-3">
-        <Text className="text-sm text-zinc-500">Documentos</Text>
-        <View className="flex-row items-center gap-2">
-          <FlatList
-            data={[1, 2, 3, 4]}
-            horizontal={true}
-            renderItem={({ index }) => (
-              <View
-                className={`w-[280px] h-[223px] rounded-2xl m bg-zinc-200 justify-center items-center p-4 ${index !== 0 && 'ml-2'}`}
-              >
-                <FileImageIcon size={62} color={colors.green[600]} />
-              </View>
-            )}
-          />
         </View>
       </View>
     </View>

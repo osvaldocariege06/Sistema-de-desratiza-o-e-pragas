@@ -2,26 +2,16 @@ import {
   View,
   Text,
   ScrollView,
-  type TextInput,
-  Keyboard,
-  TouchableOpacity,
+  type TextInput, TouchableOpacity
 } from 'react-native'
 import React, { type RefObject, useRef, useState } from 'react'
-import { Link, router } from 'expo-router'
+import { Link } from 'expo-router'
 
-import { useForm, Controller } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import zod from 'zod'
 
 import { Input } from '@/components/Input'
-import { Switch } from '@/components/Switch'
 import { Button } from '@/components/Button'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import { useAuthStore } from '@/stores/authStore'
-import { signInSchema } from './utils/signInSchema'
 import { useSignInForm } from './utils/useSignInForm'
-
-
 
 
 export default function SignInView() {
@@ -32,7 +22,6 @@ export default function SignInView() {
 
 
   const [showPassword, setShowPassword] = useState(false)
-  const [saveDevice, setSaveDevice] = useState(false)
 
 
   const handleOnSubmitEditing = (ref: RefObject<TextInput>) => {
@@ -56,7 +45,7 @@ export default function SignInView() {
               <Input.Field
                 keyboardType="default"
                 placeholder="Digite seu nome de usuário"
-                autoCapitalize="words"
+                autoCapitalize="none"
                 editable={!isSignIn}
                 onChangeText={(value) => setValue("username", value)}
                 value={watch("username")}
@@ -92,7 +81,7 @@ export default function SignInView() {
             </Input>
           </View>
           <View className="flex flex-row mt-6 mb-10 justify-between gap-4 items-center">
-            <View className="flex-row items-center gap-2">
+            {/* <View className="flex-row items-center gap-2">
               <Switch
                 saveDevice={saveDevice}
                 onChange={() => setSaveDevice(!saveDevice)}
@@ -100,10 +89,10 @@ export default function SignInView() {
                 className="h-5"
               />
               <Text className="text-xs -mb-2">Lembrar me</Text>
-            </View>
+            </View> */}
             <Link href={'/auth/sign-in/forgot-password'} asChild>
               <TouchableOpacity activeOpacity={0.6}>
-                <Text className="text-xs text-green-600">
+                <Text className="text-xs text-green-600 w-full mr-auto">
                   Esqueci a minha senha?
                 </Text>
               </TouchableOpacity>

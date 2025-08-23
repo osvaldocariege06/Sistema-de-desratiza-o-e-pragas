@@ -20,14 +20,16 @@ export function Demand({ demand }: Props) {
     >
       <Pressable className="border border-zinc-300 rounded-2xl p-4 mb-3">
         <View className="flex-row items-start justify-between">
-          <View>
+          <View className="gap-x-40">
             <Text className="text-xs text-green-600">
               {demand?.customerAddressDesignation}
               {demand?.customerAddressDetails && <Text>,</Text>}{' '}
               {demand?.customerAddressDetails ?? ''}
             </Text>
-            <Text className="text-base text-zinc-600 font-medium tracking-wide leading-relaxed">
-              {demand?.description}
+            <Text className="text-base text-zinc-600 font-medium tracking-wide leading-relaxed flex-1">
+              {demand?.description
+                ?.substring(0, 30)
+                .concat(demand?.description?.length > 30 ? '..' : '')}
             </Text>
           </View>
           <Pressable className="border border-zinc-300 w-6 h-6 rounded-full justify-center items-center active:scale-90 transition-transform">
@@ -80,12 +82,13 @@ export function Demand({ demand }: Props) {
 
           <View
             className={`rounded-2xl px-4 py-1
-            ${demand?.status === 0
+            ${
+              demand?.status === 0
                 ? 'bg-yellow-600'
                 : demand?.status === 1
                   ? 'bg-orange-600'
                   : 'bg-green-600'
-              }
+            }
             `}
           >
             <Text className="text-sm text-white">

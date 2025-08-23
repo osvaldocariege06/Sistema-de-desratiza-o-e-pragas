@@ -21,7 +21,7 @@ import { useEffect } from 'react'
 import { queryClient } from '@/lib/queryClient'
 
 export default function Layout() {
-  const { isAuthenticated, restoreToken, user } = useAuthStore()
+  const { isAuthed, restoreToken, user } = useAuthStore()
 
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
@@ -36,9 +36,11 @@ export default function Layout() {
     loadAuthState()
   }, [restoreToken])
 
+
   if (!fontsLoaded) {
     return <Splash />
   }
+
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
@@ -52,7 +54,7 @@ export default function Layout() {
           <Slot />
           <Toast />
           <Redirect
-            href={isAuthenticated ? '/(tabs)/demands' : '/auth/sign-in'}
+            href={isAuthed ? '/(tabs)/demands' : '/auth/sign-in'}
           />
         </QueryClientProvider>
       </BottomSheetModalProvider>

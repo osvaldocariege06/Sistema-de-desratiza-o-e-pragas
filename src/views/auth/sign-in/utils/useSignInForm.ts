@@ -5,11 +5,13 @@ import { useApiSignIn } from "../api/useApiSignIn";
 import { router } from "expo-router";
 import SecureStorage from "@/utils/secureStore";
 import Toast from "react-native-toast-message";
+import { useAuthStore } from "@/stores/authStore";
+import { useState } from "react";
 
 export function useSignInForm() {
-
-  const { signIn, isSignIn } = useApiSignIn();
-
+  // const { signIn, isSignIn } = useApiSignIn();
+  const { login } = useAuthStore();
+  const [loading, setLoading] = useState(false);
 
   const {
     watch,
@@ -19,46 +21,42 @@ export function useSignInForm() {
   } = useForm({
     resolver: zodResolver(signInSchema),
     defaultValues: {
-      username: '',
-      password: '',
+      username: "",
+      password: "",
     },
   });
 
-  const onSubmit = handleSubmit(async data => {
-    console.log('onsubmit: ', data)
-
+  const onSubmit = handleSubmit(async (data) => {
     try {
-      const response = await signIn({
-        username: data?.username,
-        password: data?.password,
-      })
+      setLoading(true);
+      await login(data.username, data?.password);
 
-      await SecureStorage.set('accessToken', response?.token)
-
-      router.replace('/(tabs)/demands')
+      router.replace("/(tabs)/demands");
       Toast.show({
-        type: 'success',
-        position: 'bottom',
-        text1: 'Login realizado com sucesso',
-        text2: 'Seja bem-vindo!',
-      })
+        type: "success",
+        position: "bottom",
+        text1: "Login realizado com sucesso",
+        text2: "Seja bem-vindo!",
+      });
     } catch (error) {
+      console.error("Erro ao fazer login", error);
       Toast.show({
-        type: 'error',
-        position: 'bottom',
-        text1: 'Falha ao fazer login',
+        type: "error",
+        position: "bottom",
+        text1: "Falha ao fazer login",
         text2: error as string,
-      })
-      console.log(error)
+      });
+      console.log(error);
+    } finally {
+      setLoading(false);
     }
-  })
-
+  });
 
   return {
     watch,
     errors,
     onSubmit,
     setValue,
-    isSignIn
-  }
+    isSignIn: loading,
+  };
 }

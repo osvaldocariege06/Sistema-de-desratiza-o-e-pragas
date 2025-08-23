@@ -3,8 +3,8 @@ import React from 'react'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/Avatar'
 import { Link } from 'expo-router'
 import { BellDotIcon } from 'lucide-react-native'
-import { IUser } from '@/types/user'
 import { useSafeAreaInsets } from "react-native-safe-area-context"
+import type { IUser } from '@/types/user'
 
 type Props = {
   user?: IUser

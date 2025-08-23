@@ -4,5 +4,5 @@ export type IUser = {
   designation: "Administrador do Sistema";
   email: "";
   userProfileId: 1;
-  situacao: "A";
+  isPosSupervisor?: boolean
 } | null;

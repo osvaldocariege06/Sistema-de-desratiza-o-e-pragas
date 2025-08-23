@@ -11,7 +11,11 @@ export const userType = {
 }
 export default function TabLayout() {
   const pathname = usePathname()
-  const { isAdmin } = useAuthStore()
+  const { user, isAuthed } = useAuthStore()
+
+  console.log("user", user?.isPosSupervisor);
+
+
 
   return (
     <Tabs
@@ -20,14 +24,14 @@ export default function TabLayout() {
         tabBarStyle: {
           height:
             pathname !== '/demands' &&
-            pathname !== '/profile' &&
-            pathname !== '/create-demands'
+              pathname !== '/profile' &&
+              pathname !== '/create-demands'
               ? 0
               : 70,
           display:
             pathname !== '/demands' &&
-            pathname !== '/profile' &&
-            pathname !== '/create-demands'
+              pathname !== '/profile' &&
+              pathname !== '/create-demands'
               ? 'none'
               : 'flex',
         },
@@ -54,10 +58,10 @@ export default function TabLayout() {
       <Tabs.Screen
         name="create-demands/index"
         options={{
-          href: isAdmin ? undefined : null,
+          href: user?.isPosSupervisor ? undefined : null,
           title: '',
           headerShown: false,
-          tabBarIconStyle: { marginTop: 14 },
+          tabBarIconStyle: { marginTop: 0 },
           tabBarLabel: ({ focused }) => (
             <Text
               className={`text-xs mt-4  ${focused ? 'text-green-600' : 'text-zinc-500'}`}

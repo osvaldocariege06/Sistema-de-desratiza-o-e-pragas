@@ -4,7 +4,7 @@ import type { DemandProps } from "@/types/demands";
 import { demandsApi } from "@/services/authApi.demands";
 
 // Função de fetch
-const fetchAllDemands = async (): Promise<DemandProps[]> => {
+const queryFn = async (): Promise<DemandProps[]> => {
   const accessToken = await SecureStorage.get("accessToken");
 
   const response = await demandsApi.get("/PestWorkOrder/get-list", {
@@ -17,10 +17,10 @@ const fetchAllDemands = async (): Promise<DemandProps[]> => {
 };
 
 // Hook
-export function useApiGetAllDemands() {
+export function useApiGetTechnical() {
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ["demands"],
-    queryFn: fetchAllDemands,
+    queryFn: queryFn,
   });
 
   return {

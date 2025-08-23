@@ -15,6 +15,7 @@ type ButtonProps = TouchableOpacityProps & {
 }
 type TitleProps = TextProps & {
   className?: string
+  label?: string
 }
 
 function Button({ variant, isLoading, children, ...rest }: ButtonProps) {

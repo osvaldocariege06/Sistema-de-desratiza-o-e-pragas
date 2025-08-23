@@ -6,7 +6,7 @@ import { colors } from '@/styles/colors'
 
 export default function Splash() {
   const restoreToken = useAuthStore(state => state.restoreToken)
-  const isAuthenticated = useAuthStore(state => state.isAuthenticated)
+  const isAuthed = useAuthStore(state => state.isAuthed)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -15,7 +15,7 @@ export default function Splash() {
       setLoading(false)
 
       // Redireciona com base na autenticação
-      if (isAuthenticated) {
+      if (isAuthed) {
         router.replace('/(tabs)/demands')
       } else {
         router.replace('/auth/sign-in')
@@ -23,7 +23,7 @@ export default function Splash() {
     }
 
     initialize()
-  }, [isAuthenticated, restoreToken])
+  }, [isAuthed, restoreToken])
 
   if (loading) {
     return (
