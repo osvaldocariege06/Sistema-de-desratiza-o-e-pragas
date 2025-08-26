@@ -1,4 +1,4 @@
-import { View, Text, ActivityIndicator, TouchableOpacity } from 'react-native'
+import { View, Text, ActivityIndicator } from 'react-native'
 import React, { useState } from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet'
@@ -9,15 +9,13 @@ import {
   BugIcon,
   CarFrontIcon,
   CarIcon,
-  Edit2Icon,
   HomeIcon,
   ListCheckIcon,
   PickaxeIcon,
-  Trash,
   UserIcon,
 } from 'lucide-react-native'
 import { colors } from '@/styles/colors'
-import { router, useLocalSearchParams } from 'expo-router'
+import { useLocalSearchParams } from 'expo-router'
 import DemandToggleBtn from './components/DemandToggleBtn'
 import { useApiGetDemandById } from '../api/use-api-get-demands-id/useApiGetDemandById'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -32,14 +30,6 @@ export default function DemandView() {
   const [options, setOptions] = useState<
     'details' | 'status' | 'files' | 'edit'
   >('details')
-
-  // const bottomSheetRefCompartment = useRef<BottomSheet>(null)
-  // const bottomSheetRefCars = useRef<BottomSheet>(null)
-
-  // const bottomSheetRefAddCompartment = useRef<BottomSheet>(null)
-  // const bottomSheetRefAddCar = useRef<BottomSheet>(null)
-
-  // const handleOpenAddCars = () => bottomSheetRefAddCar.current?.expand()
 
   return (
     <View>
@@ -233,7 +223,7 @@ export default function DemandView() {
           </BottomSheet>
         </View>
       </ScrollView>
-      <View
+      {/* <View
         className="p-4 flex-row gap-x-4 absolute bottom-0 bg-gray-100"
         style={{ paddingBottom: bottom }}
       >
@@ -253,7 +243,7 @@ export default function DemandView() {
         >
           <Edit2Icon color={'green'} />
         </TouchableOpacity>
-      </View>
+      </View> */}
     </View>
   )
 }

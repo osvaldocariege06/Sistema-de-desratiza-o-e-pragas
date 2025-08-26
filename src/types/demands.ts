@@ -37,6 +37,11 @@ export interface DemandProps {
   ticketId?: number;
   workBeginDate?: string;
   workEndDate?: string;
+  dataMarcacao?: string;
+  duracaoPrevista?: string;
+  horaDeslocacao?: string;
+  horaChegada?: string;
+  inicioServico?: string;
 }
 
 // export interface DemandProps {

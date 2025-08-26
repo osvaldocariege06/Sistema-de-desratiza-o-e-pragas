@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import SecureStorage from "@/utils/secureStore";
-import { DemandProps } from "@/types/demands";
+import type { DemandProps } from "@/types/demands";
 import { demandsApi } from "@/services/authApi.demands";
 
 // Função de fetch por ID

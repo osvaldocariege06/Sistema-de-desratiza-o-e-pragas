@@ -9,6 +9,7 @@ import {
 
 import { colors } from '@/styles/colors'
 import { Eye, EyeOff } from 'lucide-react-native'
+import { cn } from '@/lib/utils'
 
 type Variants = 'primary' | 'secondary' | 'tertiary'
 
@@ -27,6 +28,7 @@ interface FieldPasswordProps extends TextInputProps {
 
 interface FieldProps extends TextInputProps {
   innerRef?: React.LegacyRef<TextInput>
+  classNameFiel?: string
 }
 
 export type LabelProps = {
@@ -37,11 +39,14 @@ function Input({ children }: InputProps) {
   return <View className="flex flex-col gap-4">{children}</View>
 }
 
-function Field({ innerRef, ...rest }: FieldProps) {
+function Field({ innerRef, classNameFiel, ...rest }: FieldProps) {
   return (
     <TextInput
       ref={innerRef}
-      className="border-0 bg-zinc-200 h-16 rounded-md px-4 text-sm"
+      className={cn(
+        'border-0 bg-zinc-200 h-16 rounded-md px-4 text-sm',
+        classNameFiel
+      )}
       placeholderTextColor={colors.zinc[400]}
       {...rest}
     />
