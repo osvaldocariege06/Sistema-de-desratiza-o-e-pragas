@@ -2,7 +2,7 @@ import { colors } from '@/styles/colors'
 import { Tabs } from 'expo-router'
 import { Home, Plus, User } from 'lucide-react-native'
 import { usePathname } from 'expo-router'
-import { Pressable, View } from 'react-native'
+import { Pressable } from 'react-native'
 import { Text } from 'react-native'
 import { useAuthStore } from '@/stores/authStore'
 
@@ -13,10 +13,6 @@ export default function TabLayout() {
   const pathname = usePathname()
   const { user, isAuthed } = useAuthStore()
 
-  console.log("user", user?.isPosSupervisor);
-
-
-
   return (
     <Tabs
       screenOptions={{
@@ -24,14 +20,14 @@ export default function TabLayout() {
         tabBarStyle: {
           height:
             pathname !== '/demands' &&
-              pathname !== '/profile' &&
-              pathname !== '/create-demands'
+            pathname !== '/profile' &&
+            pathname !== '/create-demands'
               ? 0
               : 70,
           display:
             pathname !== '/demands' &&
-              pathname !== '/profile' &&
-              pathname !== '/create-demands'
+            pathname !== '/profile' &&
+            pathname !== '/create-demands'
               ? 'none'
               : 'flex',
         },

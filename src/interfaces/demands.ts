@@ -1,7 +1,9 @@
 import type { DemandProps } from "@/types/demands";
 
 export interface DemandsState {
-  demands: DemandProps[];
+  demands: {
+    data?: DemandProps[];
+  };
   isLoading: boolean;
   error: string | null;
 

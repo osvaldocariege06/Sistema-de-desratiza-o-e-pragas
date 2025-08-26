@@ -69,15 +69,15 @@ export function Demand({ demand }: Props) {
         {/* TEAMS AND STATUS */}
         <View className="mt-3 flex-row gap-4 items-center justify-between">
           <View className="flex-row">
-            {/* {demand?.team?.map((member, index) => (
+            {demand?.team?.map((member, index) => (
               <Avatar
-                key={member.name}
-                fallback={member.name}
-                src={member.avatarUrl}
+                key={member?.name}
+                fallback={member?.name}
+                src={member?.avatarUrl}
                 marginLeft={index === 0 ? 0 : -10}
-                className={member.backgroundColor}
+                className={member?.backgroundColor}
               />
-            ))} */}
+            ))}
           </View>
 
           <View
