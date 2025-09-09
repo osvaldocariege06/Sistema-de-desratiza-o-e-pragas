@@ -4,20 +4,17 @@
     "appVersionSource": "remote"
   },
   "build": {
-    "development": {
-      "developmentClient": true,
-      "distribution": "internal"
-    },
     "preview": {
-      "distribution": "internal"
+      "android": {
+        "buildType": "apk" // Gera APK para testes internos
+      }
     },
     "production": {
-      "autoIncrement": true,
-      "cache": {
-        "key": "0.0.1"
+      "android": {
+        "buildType": "app-bundle" // Gera AAB para Play Store
       },
-      "env": {
-        "NODE_OPTIONS": "--max-old-space-size=4096"
+      "ios": {
+        "simulator": false
       }
     }
   },
